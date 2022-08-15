@@ -1,10 +1,13 @@
 #Windows Makefile
 
-all: Main.o
-	@g++ ./obj/Main.o -o ColecaoLivros
+all: Main.o Livro.o
+	@g++ ./obj/Main.o ./obj/Livro.o -o ColecaoLivros
 
 Main.o: ./src/Main.cpp
-	@g++ -c ./src/Main.cpp -o ./obj/main.o
+	@g++ -c ./src/Main.cpp -o ./obj/Main.o
+
+Livro.o: ./src/Livro.cpp
+	@g++ -c ./src/Livro.cpp -o ./obj/Livro.o
 
 run:
 	@./ColecaoLivros.exe
