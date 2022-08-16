@@ -1,5 +1,9 @@
 #include "headers/Livro.h"
 
+
+Livro::Livro()
+{}
+
 Livro::~Livro()
 {}
 

@@ -1,11 +1,11 @@
 #include <iostream>
-#include <headers/AudioBook.h>
-#include <headers/Livro.h>
-#include <headers/Eletronico.h>
-#include <headers/Impresso.h>
+#include "headers/AudioBook.h"
+#include "headers/Livro.h"
+#include "headers/Eletronico.h"
+#include "headers/Impresso.h"
 
 /*
-g++ -o code *.cpp -Wall
+g++ -o code src/*.cpp -Wall
 ./code
 */
 
