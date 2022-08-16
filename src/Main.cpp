@@ -6,6 +6,9 @@
 #include <vector>
 
 #include "headers/Livro.h"
+#include "headers/AudioBook.h"
+#include "headers/Eletronico.h"
+#include "headers/Impresso.h"
 
 #define QTD_LIVROS 16
 
@@ -21,7 +24,6 @@ int main(int argc, char const *argv[])
 	cout << "   | | | |_) | | | | |  _____  | |_) | | | | | | |" << endl;
 	cout << "   | | |  __/| |_| | | |_____| |  __/| |_| | |_| |" << endl;
 	cout << "   |_| |_|    \\___/|_|         |_|    \\___/ \\___/ " << endl;
-
 	cout << endl;
 	cout << "Ana Laura Siqueira Mendes - 20.2.4091" << endl;
 	//Acertem os nomes e matricula de vcs amiguinhos
