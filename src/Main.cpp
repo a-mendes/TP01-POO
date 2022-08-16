@@ -4,13 +4,15 @@
 #include "headers/Eletronico.h"
 #include "headers/Impresso.h"
 
+using namespace std;
+
 /*
 g++ -o code src/*.cpp -Wall
 ./code
 */
 
 int main(int argc, char const *argv[]){
-	std::cout << "TP01 - POO" << std::endl;
+	cout << "TP01 - POO" << endl;
 
 	Impresso livroImpresso;
 	AudioBook livroAudioBook;
