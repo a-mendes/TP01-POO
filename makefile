@@ -1,7 +1,7 @@
 #Windows Makefile
 
-all: Main.o Livro.o
-	@g++ ./obj/Main.o ./obj/Livro.o -o ColecaoLivros.exe
+all: Main.o Livro.o AudioBook.o Eletronico.o Impresso.o
+	@g++ ./obj/Main.o ./obj/Livro.o ./obj/AudioBook.o ./obj/Eletronico.o ./obj/Impresso.o -o ColecaoLivros.exe
 
 Main.o: ./src/Main.cpp
 	@g++ -c ./src/Main.cpp -o ./obj/Main.o
