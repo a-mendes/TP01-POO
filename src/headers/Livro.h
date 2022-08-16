@@ -43,4 +43,10 @@ class Livro
 		vector<string> getKeywords();
 		void setKeywords(vector<string> keywords);
 };
+
+
+
+
+
+
 #endif 
