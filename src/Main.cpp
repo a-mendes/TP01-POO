@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 #include <string> 
 #include <sstream> 
 #include <algorithm> 
@@ -48,10 +49,11 @@ void lerBaseDeDados(vector<Livro> *livros)
 		string nomeArquivo = to_string(i+1) + ".txt";
 		ifstream arquivo(nomeArquivo);
 
-		string tipoLivro = getline();
+		//fazer verificação de tipo de livro e criar instancia adequada
 	}
 }
 
+//Será usada para ler arquivos, escritores, keywords e livrarias
 void split(const string& str, vector<string>& cont, char delim = ' ') 
 { 
 	stringstream ss(str); 
