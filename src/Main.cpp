@@ -5,7 +5,7 @@
 #include <headers/Impresso.h>
 
 /*
-g++ -o code 2.cpp -Wall
+g++ -o code *.cpp -Wall
 ./code
 */
 
