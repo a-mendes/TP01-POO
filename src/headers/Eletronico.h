@@ -8,7 +8,7 @@
 //Verificar boa prática
 using namespace std;
 
-class Eletronico : public Livro{
+class Eletronico : public Livro {
     
 	private:
 		string url;

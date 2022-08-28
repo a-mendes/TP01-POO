@@ -8,7 +8,7 @@
 //Verificar boa prática
 using namespace std;
 
-class AudioBook : public Livro{
+class AudioBook : public Livro {
     
 	private:
 		float duracao;

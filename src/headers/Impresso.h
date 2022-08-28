@@ -8,7 +8,7 @@
 //Verificar boa prática
 using namespace std;
 
-class Impresso: public Livro{
+class Impresso: public Livro {
     
 	private:
 		vector<string> livraria;
@@ -20,7 +20,6 @@ class Impresso: public Livro{
 		
 		int getColunas();
 		void setColunas(int colunas);	
-
 };
 
 

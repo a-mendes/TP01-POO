@@ -23,7 +23,7 @@ class Livro
 	public:
 		Livro();
 		//Confirmar questão de classe abstrata e função virtual pura
-		virtual ~Livro() = 0;
+		virtual ~Livro();
 
 		vector<string> getEscritores();
 		void setEscritores(vector<string> escritores);
@@ -43,10 +43,5 @@ class Livro
 		vector<string> getKeywords();
 		void setKeywords(vector<string> keywords);
 };
-
-
-
-
-
 
 #endif 

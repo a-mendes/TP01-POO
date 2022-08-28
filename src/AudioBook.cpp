@@ -1,5 +1,8 @@
 #include "headers/AudioBook.h"
 
+Livro::~Livro()
+{}
+
 float AudioBook::getDuracao(){
     return this->duracao;
 }
