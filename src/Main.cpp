@@ -35,7 +35,8 @@ int main(int argc, char const *argv[])
 	//Acertem os nomes e matricula de vcs amiguinhos
 	cout << "Guilherme Salim Sapequinha" << endl;
 	cout << "Mateus" << endl;
-	cout << "Romulo Junio Vieira Rocha - 21.1.4022" << endl << endl;
+	cout << "Romulo Junio Vieira Rocha - 21.1.4022" << endl;
+	cout << endl;
 	
 	/**
 	 * Colecao unica de livros
@@ -44,18 +45,31 @@ int main(int argc, char const *argv[])
 	vector<Livro> livros;
 	lerBaseDeDados(livros);
 
+	/* print teste
+	for (int i = 0; i < livros.size(); ++i)
+	{
+		cout << "Livro " << i + 1 << ") " << endl;
+		cout << "\t" << livros[i].getTitulo() << endl;
+		cout << "\t" << livros[i].getAnoPublicacao() << endl;
+
+		for (int j = 0; j < livros[i].getEscritores().size(); ++j)
+			cout << "\t" << livros[i].getEscritores()[j] << endl;
+
+		cout << endl;
+	}*/
+
 	return 0;
 }
 
 //Verificar escopo adequado para essa função
 void lerBaseDeDados(vector<Livro> &livros)
 {
-	cout << "Lendo Base de Dados..." << endl;
+	//cout << "Lendo Base de Dados..." << endl;
 	for (int i = 0; i < QTD_LIVROS; ++i)
 	{
 		string nomeArquivo = "data/" + to_string(i+1) + ".txt";
 		ifstream arquivo(nomeArquivo);
-		cout << "\tArquivo: " << nomeArquivo << endl;
+		//cout << "\tArquivo: " << nomeArquivo << endl;
 
 		/** 
 		 * Faz verificação de tipo de livro e cria instancia adequada
