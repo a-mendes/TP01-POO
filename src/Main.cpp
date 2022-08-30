@@ -3,6 +3,10 @@
  */
 #include "headers/Utilitarios.h"
 
+#include <typeinfo>
+
+bool hasAudioBook(vector<Livro*> &livros, string escritor);
+
 int main(int argc, char const *argv[])
 {                                         
 	cout << "  _____ ____   ___  _           ____   ___   ___  " << endl;
@@ -28,7 +32,8 @@ int main(int argc, char const *argv[])
 	/* print teste*/
 	for (int i = 0; i < livros.size(); ++i)
 	{
-		cout << "Livro " << i + 1 << ") " << endl;
+		Livro *livro = livros[i];
+		cout << "Livro " << i + 1 << ") " << typeid(*livro).name() << endl;
 		cout << "\t" << livros[i]->getTitulo() << endl;
 		cout << "\t" << livros[i]->getAnoPublicacao() << endl;
 
@@ -41,7 +46,7 @@ int main(int argc, char const *argv[])
 	//Criar um menu de acesso as funcoes - novo arquivo?
 
 	char op;
-	cout << "Escolha a opcao" << endl;
+	cout << "Escolha a opcao" << endl; //Melhorar
 	cin >> op;
 
 	switch(op)
@@ -53,7 +58,17 @@ int main(int argc, char const *argv[])
 
 		case 'e':
 		{
+			cout << "Informe o nome do escritor: ";
+			string escritor;
+			/**
+			 * cin >> ws, artificio usado para contornar problema de buffer
+			 * Disponivel em: https://www.geeksforgeeks.org/problem-with-getline-after-cin/.
+			 */ 
+			getline(cin >> ws, escritor); 
+			
+			string nao = (hasAudioBook(livros, escritor)) ? (" ") : (" nao ");
 
+			cout << "O escritor '" << escritor << "'" << nao << "possui AudioBooks" << endl; 
 		} break;
 
 		case 'f':
@@ -66,3 +81,50 @@ int main(int argc, char const *argv[])
 	return 0;
 }
 
+//Verificar escopo adequado
+vector<Impresso> qtdLivrarias(vector<Livro*> &livros, int qtd)
+{
+	/**
+	 * Dado um número de livrarias, criar uma função que retorne uma coleção com os 
+	 * livros impressos com um número maior ou igual de livros em livrarias. No main
+	 * deve ser mostrado uma mensagem de “não encontrado” se nenhum livro impresso
+	 */ 
+	//Quantidade de livros em livrarias ou a quantidade de livrarias que possuem o livro?
+	
+	for (int i = 0; i < livros.size(); ++i)
+	{
+		/* code */
+	}
+}
+
+//Verificar escopo adequado
+bool hasAudioBook(vector<Livro*> &livros, string escritor)
+{
+	for (int i = 0; i < livros.size(); ++i)
+	{
+		Livro *livro = livros[i];
+
+		/**
+		 * Variavel auxiliar para identificar instancia do objeto
+		 */
+		Livro *audiobook = new AudioBook();
+
+		/**
+		 * Verifica se o objeto atual pertence a Classe AudioBook
+		 */
+		if(typeid(*livro).name() == typeid(*audiobook).name())
+		{ 
+			/**
+			 * Compara todos os escritores do AudioBook com o escritor buscado
+			 */ 
+			vector<string> escritores = livro->getEscritores();
+			for (int i = 0; i < escritores.size(); ++i)
+			{
+				if(escritores[i] == escritor)
+					return true;
+			}
+		}
+	}
+
+	return false;
+}
