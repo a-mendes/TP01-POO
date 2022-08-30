@@ -29,19 +29,19 @@ int main(int argc, char const *argv[])
 	vector<Livro*> livros;
 	lerBaseDeDados(livros);
 
-	/* print teste*/
-	for (int i = 0; i < livros.size(); ++i)
-	{
-		Livro *livro = livros[i];
-		cout << "Livro " << i + 1 << ") " << typeid(*livro).name() << endl;
-		cout << "\t" << livros[i]->getTitulo() << endl;
-		cout << "\t" << livros[i]->getAnoPublicacao() << endl;
+	// print teste
+	// for (int i = 0; i < livros.size(); ++i)
+	// {
+	// 	Livro *livro = livros[i];
+	// 	cout << "Livro " << i + 1 << ") " << typeid(*livro).name() << endl;
+	// 	cout << "\t" << livros[i]->getTitulo() << endl;
+	// 	cout << "\t" << livros[i]->getAnoPublicacao() << endl;
 
-		for (int j = 0; j < livros[i]->getEscritores().size(); ++j)
-			cout << "\t" << livros[i]->getEscritores()[j] << endl;
+	// 	for (int j = 0; j < livros[i]->getEscritores().size(); ++j)
+	// 		cout << "\t" << livros[i]->getEscritores()[j] << endl;
 
-		cout << endl;
-	}
+	// 	cout << endl;
+	// }
 
 	//Criar um menu de acesso as funcoes - novo arquivo?
 
@@ -83,12 +83,7 @@ int main(int argc, char const *argv[])
 
 //Verificar escopo adequado
 vector<Impresso> qtdLivrarias(vector<Livro*> &livros, int qtd)
-{
-	/**
-	 * Dado um número de livrarias, criar uma função que retorne uma coleção com os 
-	 * livros impressos com um número maior ou igual de livros em livrarias. No main
-	 * deve ser mostrado uma mensagem de “não encontrado” se nenhum livro impresso
-	 */ 
+{ 
 	//Quantidade de livros em livrarias ou a quantidade de livrarias que possuem o livro?
 	
 	for (int i = 0; i < livros.size(); ++i)
