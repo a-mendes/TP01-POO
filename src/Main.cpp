@@ -45,7 +45,7 @@ int main(int argc, char const *argv[])
 	vector<Livro*> livros;
 	lerBaseDeDados(livros);
 
-	/* print teste*/
+	/* print teste
 	for (int i = 0; i < livros.size(); ++i)
 	{
 		cout << "Livro " << i + 1 << ") " << endl;
@@ -56,7 +56,7 @@ int main(int argc, char const *argv[])
 			cout << "\t" << livros[i]->getEscritores()[j] << endl;
 
 		cout << endl;
-	}
+	}*/
 
 	return 0;
 }
