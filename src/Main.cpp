@@ -15,11 +15,11 @@
 
 using namespace std;
 
-void lerBaseDeDados(vector<Livro> &livros);
-void lerLivro(ifstream &arquivo, Livro &livro);
-void lerEletronico(ifstream &arquivo, Eletronico &eletronico);
-void lerImpresso(ifstream &arquivo, Impresso &impresso);
-void lerAudioBook(ifstream &arquivo, AudioBook &audioBook);
+void lerBaseDeDados(vector<Livro*> &livros);
+void lerLivro(ifstream &arquivo, Livro *livro);
+void lerEletronico(ifstream &arquivo, Eletronico *eletronico);
+void lerImpresso(ifstream &arquivo, Impresso *impresso);
+void lerAudioBook(ifstream &arquivo, AudioBook *audioBook);
 void split(const string &str, vector<string> &cont, char delim); 
 
 
@@ -42,27 +42,27 @@ int main(int argc, char const *argv[])
 	 * Colecao unica de livros
 	 * 		- Contem os livros fornecidos pelos arquivos .txt
 	 */
-	vector<Livro> livros;
+	vector<Livro*> livros;
 	lerBaseDeDados(livros);
 
-	/* print teste
+	/* print teste*/
 	for (int i = 0; i < livros.size(); ++i)
 	{
 		cout << "Livro " << i + 1 << ") " << endl;
-		cout << "\t" << livros[i].getTitulo() << endl;
-		cout << "\t" << livros[i].getAnoPublicacao() << endl;
+		cout << "\t" << livros[i]->getTitulo() << endl;
+		cout << "\t" << livros[i]->getAnoPublicacao() << endl;
 
-		for (int j = 0; j < livros[i].getEscritores().size(); ++j)
-			cout << "\t" << livros[i].getEscritores()[j] << endl;
+		for (int j = 0; j < livros[i]->getEscritores().size(); ++j)
+			cout << "\t" << livros[i]->getEscritores()[j] << endl;
 
 		cout << endl;
-	}*/
+	}
 
 	return 0;
 }
 
 //Verificar escopo adequado para essa função
-void lerBaseDeDados(vector<Livro> &livros)
+void lerBaseDeDados(vector<Livro*> &livros)
 {
 	//cout << "Lendo Base de Dados..." << endl;
 	for (int i = 0; i < QTD_LIVROS; ++i)
@@ -84,7 +84,7 @@ void lerBaseDeDados(vector<Livro> &livros)
 			 */ 
 			case 1:
 			{
-				Impresso livro = Impresso();
+				Impresso *livro = new Impresso();
 				lerImpresso(arquivo, livro);
 				livros.push_back(livro);
 			}
@@ -95,7 +95,7 @@ void lerBaseDeDados(vector<Livro> &livros)
 			 */ 
 			case 2:
 			{
-				Eletronico livro = Eletronico();
+				Eletronico *livro = new Eletronico();
 				lerEletronico(arquivo, livro);
 				livros.push_back(livro);
 			}
@@ -106,7 +106,7 @@ void lerBaseDeDados(vector<Livro> &livros)
 			 */ 
 			case 3:
 			{
-				AudioBook livro = AudioBook();
+				AudioBook *livro = new AudioBook();
 				lerAudioBook(arquivo, livro);
 				livros.push_back(livro);
 			}
@@ -116,14 +116,14 @@ void lerBaseDeDados(vector<Livro> &livros)
 }
 
 //Verificar escopo adequado para essa função
-void lerLivro(ifstream &arquivo, Livro &livro)
+void lerLivro(ifstream &arquivo, Livro *livro)
 {
 	/**
 	 * Titulo
 	 */ 
 	string titulo;
 	getline(arquivo, titulo);
-	livro.setTitulo(titulo);
+	livro->setTitulo(titulo);
 
 	/**
 	 * Escritores
@@ -132,21 +132,21 @@ void lerLivro(ifstream &arquivo, Livro &livro)
 	getline(arquivo, strEscritores);
 	vector<string> escritores;
 	split(strEscritores, escritores, ';');
-	livro.setEscritores(escritores);
+	livro->setEscritores(escritores);
 
 	/**
 	 * Ano
 	 */ 
 	string ano;
 	getline(arquivo, ano);
-	livro.setAnoPublicacao(stoi(ano));
+	livro->setAnoPublicacao(stoi(ano));
 
 	/**
 	 * Idioma
 	 */ 
 	string idioma;
 	getline(arquivo, idioma);
-	livro.setIdiomaOriginal(idioma);
+	livro->setIdiomaOriginal(idioma);
 
 	/**
 	 * Keywords
@@ -155,7 +155,7 @@ void lerLivro(ifstream &arquivo, Livro &livro)
 	getline(arquivo, strKeywords);
 	vector<string> keywords;
 	split(strKeywords, keywords, ';');
-	livro.setKeywords(keywords);
+	livro->setKeywords(keywords);
 	
 	/**
 	 * Capitulos
@@ -164,25 +164,69 @@ void lerLivro(ifstream &arquivo, Livro &livro)
 	getline(arquivo, strCapitulos);
 	vector<string> capitulos;
 	split(strCapitulos, capitulos, ';');
-	livro.setKeywords(capitulos);
+	livro->setKeywords(capitulos);
 }
 
 //Verificar escopo adequado para essa função
-void lerAudioBook(ifstream &arquivo, AudioBook &audioBook)
+void lerAudioBook(ifstream &arquivo, AudioBook *audioBook)
 {
 	lerLivro(arquivo, audioBook);
+
+	/**
+	 * Duracao Audio
+	 */ 
+	string duracao;
+	getline(arquivo, duracao);
+	audioBook->setDuracao(stof(duracao));
+	
+	/**
+	 * Formato Audio
+	 */ 
+	string formato;
+	getline(arquivo, formato);
+	audioBook->setFormatoArquivo(formato);
 }
 
 //Verificar escopo adequado para essa função
-void lerEletronico(ifstream &arquivo, Eletronico &eletronico)
+void lerEletronico(ifstream &arquivo, Eletronico *eletronico)
 {
 	lerLivro(arquivo, eletronico);
+
+	/**
+	 * Url
+	 */ 
+	string url;
+	getline(arquivo, url);
+	eletronico->setUrl(url);
+	
+	/**
+	 * Formato Audio
+	 */ 
+	string formato;
+	getline(arquivo, formato);
+	eletronico->setFormatoArquivo(formato);
 }
 
 //Verificar escopo adequado para essa função
-void lerImpresso(ifstream &arquivo, Impresso &impresso)
+void lerImpresso(ifstream &arquivo, Impresso *impresso)
 {
 	lerLivro(arquivo, impresso);
+
+	/**
+	 * Livrarias
+	 */ 
+	string strLivrarias;
+	getline(arquivo, strLivrarias);
+	vector<string> livrarias;
+	split(strLivrarias, livrarias, ';');
+	impresso->setLivrarias(livrarias);
+	
+	/**
+	 * Colunas
+	 */ 
+	string colunas;
+	getline(arquivo, colunas);
+	impresso->setColunas(stoi(colunas));
 }
 
 void split(const string &str, vector<string> &cont, char delim = ' ') 

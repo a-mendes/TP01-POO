@@ -1,10 +1,10 @@
 #include "headers/Impresso.h"
 
-vector<string> Impresso::getLivraria(){
-    return this->livraria;
+vector<string> Impresso::getLivrarias(){
+    return this->livrarias;
 }
-void Impresso::setLivraria(vector<string> livraria){
-	this->livraria = livraria;
+void Impresso::setLivrarias(vector<string> livrarias){
+	this->livrarias = livrarias;
 }
 
 int Impresso::getColunas(){

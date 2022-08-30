@@ -11,12 +11,12 @@ using namespace std;
 class Impresso: public Livro {
     
 	private:
-		vector<string> livraria;
+		vector<string> livrarias;
 		int colunas;
 
 	public:
-		vector<string> getLivraria();
-		void setLivraria(vector<string> livraria);
+		vector<string> getLivrarias();
+		void setLivrarias(vector<string> livrarias);
 		
 		int getColunas();
 		void setColunas(int colunas);	
