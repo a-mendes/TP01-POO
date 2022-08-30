@@ -1,7 +1,7 @@
 #Windows Makefile
 
-all: Main.o Livro.o AudioBook.o Eletronico.o Impresso.o
-	@g++ ./obj/Main.o ./obj/Livro.o ./obj/AudioBook.o ./obj/Eletronico.o ./obj/Impresso.o -o ColecaoLivros.exe
+all: Main.o Livro.o AudioBook.o Eletronico.o Impresso.o Utilitarios.o
+	@g++ ./obj/Main.o ./obj/Livro.o ./obj/AudioBook.o ./obj/Eletronico.o ./obj/Impresso.o ./obj/Utilitarios.o -o ColecaoLivros.exe
 
 Main.o: ./src/Main.cpp
 	@g++ -c ./src/Main.cpp -o ./obj/Main.o
@@ -17,6 +17,9 @@ Eletronico.o: ./src/Eletronico.cpp
 
 Impresso.o: ./src/Impresso.cpp
 	@g++ -c ./src/Impresso.cpp -o ./obj/Impresso.o
+
+Utilitarios.o: ./src/Utilitarios.cpp
+	@g++ -c ./src/Utilitarios.cpp -o ./obj/Utilitarios.o
 
 run:
 	@./ColecaoLivros.exe
