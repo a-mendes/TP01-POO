@@ -20,7 +20,7 @@ ostream& operator<<(ostream& cout,  Eletronico& livro){
 	cout<<right <<'|'<<livro.getEscritores().front();
 	cout<< left <<'|'<<livro.getIdiomaOriginal();
 	if(livro.getCapitulos().size()<=10)
-		cout<<'|00'<<livro.getCapitulos().size();
+		cout<<"|00"<<livro.getCapitulos().size();
 	
 	else if(livro.getCapitulos().size()>10&&livro.getCapitulos().size()<100)
 		cout<<"|0"<<livro.getCapitulos().size();
@@ -38,3 +38,4 @@ ostream& operator<<(ostream& cout,  Eletronico& livro){
     cout<<"|"<<livro.getFormatoArquivo();
 	
 	return cout;
+}

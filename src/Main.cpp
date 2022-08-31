@@ -182,7 +182,3 @@ bool hasAudioBook(vector<Livro*> &livros, string escritor)
 
 	return false;
 }
-
-
-
-//Verificar escopo adequado

@@ -40,4 +40,6 @@ ostream& operator<<(ostream& cout,  AudioBook& livro){
 		cout<<"|"<<livro.getKeywords().size();
 	}
 	cout<<"|"<<livro.getDuracao();
+
+	return cout;
 }
