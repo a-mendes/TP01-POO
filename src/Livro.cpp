@@ -84,3 +84,4 @@ ostream& operator<<(ostream& cout,  Livro& livro){
 	}
 	
 	return cout;
+}
