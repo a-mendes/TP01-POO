@@ -1,6 +1,3 @@
-/**
- * Demais imports sao feitos por "headers/Utilitarios.h"
- */
 #include "headers/Utilitarios.h"
 
 #include <typeinfo>
@@ -10,6 +7,8 @@ bool hasAudioBook(vector<Livro*> &livros, string escritor);
 void mostrarOuSalvarColecaoLivro();
 int quantidadeKeywordColecaoLivro(vector<Livro*> &livros, string keyword);
 void mapeamentoColecaoLivro();
+
+int testeSobrecarga();
 
 int main(int argc, char const *argv[])
 {                                         
@@ -48,6 +47,8 @@ int main(int argc, char const *argv[])
 	// }
 
 	//Criar um menu de acesso as funcoes - novo arquivo?
+
+	testeSobrecarga();
 
 	char op;
 	cout << "Escolha a opcao" << endl; //Melhorar
@@ -144,6 +145,10 @@ vector<Impresso> qtdLivrarias(vector<Livro*> &livros, int qtd)
 	{
 		/* code */
 	}
+
+	//so pro compilador para de reclamar. mateus
+	vector<Impresso> tmp;
+	return tmp;
 }
 
 //Verificar escopo adequado
@@ -177,3 +182,7 @@ bool hasAudioBook(vector<Livro*> &livros, string escritor)
 
 	return false;
 }
+
+
+
+//Verificar escopo adequado
