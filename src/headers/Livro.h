@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "headers/Utilitarios.h"
 
 //Verificar boa prática
 using namespace std;
@@ -42,6 +43,7 @@ class Livro
 
 		vector<string> getKeywords();
 		void setKeywords(vector<string> keywords);
+		friend std:: ostream& operator<<(ostream& cout,  Livro& livro);
 };
 
 #endif 
