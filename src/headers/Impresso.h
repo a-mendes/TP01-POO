@@ -20,6 +20,7 @@ class Impresso: public Livro {
 		
 		int getColunas();
 		void setColunas(int colunas);	
+		friend std:: ostream& operator<<(ostream& cout,  Impresso& livro);
 };
 
 
