@@ -63,25 +63,27 @@ void Livro::setKeywords(vector<string> keywords)
 	this->keywords = keywords;
 }
 
-ostream& operator<<(ostream& cout,  Livro& livro){
-	cout<< left <<'|'<<livro.getTitulo().erase(30);
-	cout<<right <<'|'<<livro.getEscritores().front();
-	cout<< left <<'|'<<livro.getIdiomaOriginal();
-	if(livro.getCapitulos().size()<=10)
-		cout<<"|00"<<livro.getCapitulos().size();
+ostream& operator<<(ostream& coutOS,  Livro& livro){
+	// coutOS<< left <<'|'<<livro.getTitulo().erase(30);
+	// coutOS<<right <<'|'<<livro.getEscritores().front();
+	// coutOS<< left <<'|'<<livro.getIdiomaOriginal();
+	// if(livro.getCapitulos().size()<=10)
+	// 	coutOS<<"|00"<<livro.getCapitulos().size();
 	
-	else if(livro.getCapitulos().size()>10&&livro.getCapitulos().size()<100)
-		cout<<"|0"<<livro.getCapitulos().size();
+	// else if(livro.getCapitulos().size()>10&&livro.getCapitulos().size()<100)
+	// 	coutOS<<"|0"<<livro.getCapitulos().size();
 	
-	else
-		cout<<"|"<<livro.getCapitulos().size();
+	// else
+	// 	coutOS<<"|"<<livro.getCapitulos().size();
 
 	
-	if(livro.getKeywords().size()<10){
-		cout<<"|0"<<livro.getKeywords().size(); }
-	else{
-		cout<<"|"<<livro.getKeywords().size();
-	}
+	// if(livro.getKeywords().size()<10){
+	// 	coutOS<<"|0"<<livro.getKeywords().size(); }
+	// else{
+	// 	coutOS<<"|"<<livro.getKeywords().size();
+	// }
+
+	coutOS << livro.getTitulo() << '/' << endl;
 	
-	return cout;
+	return coutOS;
 }
