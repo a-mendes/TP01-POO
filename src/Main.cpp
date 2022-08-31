@@ -56,6 +56,28 @@ int main(int argc, char const *argv[])
 
 	switch(op)
 	{
+
+		case 'b':
+		{
+			cout << "Informe o Idioma: ";
+			string idioma;
+			int* indices;
+			vector<Livro>recebelivros;
+			/**
+			 * cin >> ws, artificio usado para contornar problema de buffer
+			 * Disponivel em: https://www.geeksforgeeks.org/problem-with-getline-after-cin/.
+			 */ 
+			getline(cin >> ws, idioma); 
+			
+			recebelivros.assign(hasIdioma(livros,idioma,indices).begin(),hasIdioma(livros,idioma,indices).end());
+			cout << "O idoma '" << idioma << "'" << "esta presente nos seguintes livros:"  << endl; 
+			for (int i = 0; i < recebelivros.size(); i++)
+			{
+				cout << recebelivros[indices[i]];
+			}
+			
+			
+		}
 		case 'd':
 		{
 
@@ -182,3 +204,32 @@ bool hasAudioBook(vector<Livro*> &livros, string escritor)
 
 	return false;
 }
+
+
+
+//Verificar escopo adequado
+vector<Livro*> hasIdioma(vector<Livro*> &livros, string idioma,int *Indices)
+{
+	int j = 0;
+	for (int i = 0; i < livros.size(); ++i)
+	{
+		Livro *livro = livros[i];
+
+		/**
+		 * Variavel auxiliar para identificar instancia do objeto
+		 */
+		Livro *audiobook = new AudioBook();
+
+		/**
+		 * Verifica se o objeto atual pertence a Classe AudioBook
+		 */
+		if(idioma == livro->getIdiomaOriginal())
+		{ 
+			Indices[j]= i;
+			j++;
+		}
+	}
+
+	return livros;
+}
+
