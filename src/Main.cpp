@@ -1,5 +1,5 @@
 #include "headers/Utilitarios.h"
-
+#include<list>
 #include <typeinfo>
 
 bool hasAudioBook(vector<Livro*> &livros, string escritor);
@@ -76,6 +76,15 @@ int main(int argc, char const *argv[])
 				cout << recebelivros[indices[i]];
 			}
 			
+			
+		}
+
+		case 'c':
+		{
+			vector<Livro>recebelivros;
+			recebelivros.assign(OrdenaEletronicos(livros).begin(),OrdenaEletronicos(livros).end());
+			for (int i = 0; i < recebelivros.size(); i++)
+				cout << recebelivros[i];
 			
 		}
 		case 'd':
@@ -175,7 +184,7 @@ vector<Impresso> qtdLivrarias(vector<Livro*> &livros, int qtd)
 
 //Verificar escopo adequado
 bool hasAudioBook(vector<Livro*> &livros, string escritor)
-{
+{	
 	for (int i = 0; i < livros.size(); ++i)
 	{
 		Livro *livro = livros[i];
@@ -221,7 +230,7 @@ vector<Livro*> hasIdioma(vector<Livro*> &livros, string idioma,int *Indices)
 		Livro *audiobook = new AudioBook();
 
 		/**
-		 * Verifica se o objeto atual pertence a Classe AudioBook
+		 * 
 		 */
 		if(idioma == livro->getIdiomaOriginal())
 		{ 
@@ -233,3 +242,34 @@ vector<Livro*> hasIdioma(vector<Livro*> &livros, string idioma,int *Indices)
 	return livros;
 }
 
+bool Naoeletronico(Livro livro){
+	Livro *eletronico = new Eletronico();
+	return typeid(livro).name() != typeid(*eletronico).name();
+}
+//Verificar escopo adequado
+vector<Livro> OrdenaEletronicos(vector<Livro*> &livros)
+{
+	list<Livro>SoEletronicos ;
+	Livro aux;
+	SoEletronicos.assign(livros.begin(),livros.end());
+	SoEletronicos.remove_if(Naoeletronico);
+    vector<Livro>ordenado;
+	ordenado.assign(SoEletronicos.begin(),SoEletronicos.end());
+	for (int  i = 0; i < ordenado.size(); i++)
+	{
+		for (int  j = 0; i < ordenado.size(); j++)
+		{
+			if (ordenado[i].getAnoPublicacao()>ordenado[j].getAnoPublicacao())
+			{
+				aux = ordenado[i];
+				ordenado[i] = ordenado[j];
+				ordenado[j]=aux;
+			}
+			
+		}
+		
+	}
+	return ordenado;
+}
+
+ 
