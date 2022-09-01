@@ -6,6 +6,20 @@
 #include <typeinfo>
 
 bool hasAudioBook(vector<Livro*> &livros, string escritor);
+vector<Livro*> livrosByTitulo(vector<Livro*> &livros, string titulo);
+
+//Deletar isso depois
+void printTeste(Livro *livro)
+{
+	cout << "Tipo livro: " << typeid(*livro).name() << endl;
+	cout << "\t" << livro->getTitulo() << endl;
+	cout << "\t" << livro->getAnoPublicacao() << endl;
+
+	for (int j = 0; j < livro->getEscritores().size(); ++j)
+		cout << "\t" << livro->getEscritores()[j] << endl;
+
+	cout << endl;
+}
 
 int main(int argc, char const *argv[])
 {                                         
@@ -32,15 +46,7 @@ int main(int argc, char const *argv[])
 	/* print teste*/
 	for (int i = 0; i < livros.size(); ++i)
 	{
-		Livro *livro = livros[i];
-		cout << "Livro " << i + 1 << ") " << typeid(*livro).name() << endl;
-		cout << "\t" << livros[i]->getTitulo() << endl;
-		cout << "\t" << livros[i]->getAnoPublicacao() << endl;
-
-		for (int j = 0; j < livros[i]->getEscritores().size(); ++j)
-			cout << "\t" << livros[i]->getEscritores()[j] << endl;
-
-		cout << endl;
+		printTeste(livros[i]);
 	}
 
 	//Criar um menu de acesso as funcoes - novo arquivo?
@@ -58,6 +64,7 @@ int main(int argc, char const *argv[])
 
 		case 'e':
 		{
+			//Melhorar UI
 			cout << "Informe o nome do escritor: ";
 			string escritor;
 			/**
@@ -73,6 +80,30 @@ int main(int argc, char const *argv[])
 
 		case 'f':
 		{
+			//Melhorar UI
+			cout << "Informe o Titulo: ";
+			string titulo;
+			/**
+			 * cin >> ws, artificio usado para contornar problema de buffer
+			 * Disponivel em: https://www.geeksforgeeks.org/problem-with-getline-after-cin/.
+			 */ 
+			getline(cin >> ws, titulo); 
+
+			vector<Livro*> livrosTitulo;
+			livrosTitulo = livrosByTitulo(livros, titulo);
+
+			cout << "livrosTitulo.size(): " << livrosTitulo.size() << endl;
+			if (livrosTitulo.size() == 0)
+			{
+				cout << "Nenhum livro foi encontrado" << endl;
+				break;
+			}
+
+			for (int i = 0; i < livrosTitulo.size(); ++i)
+			{
+				cout << "aaaaaa" << endl;
+				printTeste(livrosTitulo[i]);
+			}
 
 		} break;
 
@@ -127,4 +158,21 @@ bool hasAudioBook(vector<Livro*> &livros, string escritor)
 	}
 
 	return false;
+}
+
+vector<Livro*> livrosByTitulo(vector<Livro*> &livros, string titulo)
+{
+	vector<Livro*> livrosTitulo;
+
+	for (int i = 0; i < livros.size(); ++i)
+	{
+		Livro *livro = livros[i];
+
+		if (livro->getTitulo() == titulo)
+		{
+			livrosTitulo.push_back(livro);
+
+			printTeste(livro);
+		}
+	}
 }
