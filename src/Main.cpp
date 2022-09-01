@@ -5,6 +5,8 @@
 
 #include <typeinfo>
 
+char menu();
+
 bool hasAudioBook(vector<Livro*> &livros, string escritor);
 vector<Livro*> livrosByTitulo(vector<Livro*> &livros, string titulo);
 
@@ -47,88 +49,128 @@ int main(int argc, char const *argv[])
 	vector<Livro*> livros;
 	lerBaseDeDados(livros);
 
-	/* print teste*/
-	for (int i = 0; i < livros.size(); ++i)
+	char op = '*';
+	do 
 	{
-		//printTeste(livros[i]);
-	}
+		op = menu();
 
-
-	//Criar um menu de acesso as funcoes - novo arquivo?
-
-	char op;
-	cout << "Escolha a opcao" << endl; //Melhorar
-	cin >> op;
-
-	switch(op)
-	{
-		case 'd':
+		switch(op)
 		{
-
-		} break;
-
-		case 'e':
-		{
-			//Melhorar UI
-			cout << "Informe o nome do escritor: ";
-			string escritor;
-			/**
-			 * cin >> ws, artificio usado para contornar problema de buffer
-			 * Disponivel em: https://www.geeksforgeeks.org/problem-with-getline-after-cin/.
-			 */ 
-			getline(cin >> ws, escritor); 
-			
-			string nao = (hasAudioBook(livros, escritor)) ? (" ") : (" nao ");
-
-			cout << "O escritor '" << escritor << "'" << nao << "possui AudioBooks" << endl; 
-		} break;
-
-		case 'f':
-		{
-			//Melhorar UI
-			cout << "Informe o Titulo: ";
-			string titulo;
-			/**
-			 * cin >> ws, artificio usado para contornar problema de buffer
-			 * Disponivel em: https://www.geeksforgeeks.org/problem-with-getline-after-cin/.
-			 */ 
-			getline(cin >> ws, titulo); 
-
-			vector<Livro*> livrosTitulo = livrosByTitulo(livros, titulo);
-
-			if (livrosTitulo.size() == 0)
+			case 'a': case 'A':
 			{
-				cout << "Nenhum livro foi encontrado" << endl;
+				/* print teste*/
+				for (int i = 0; i < livros.size(); ++i)
+				{
+					printTeste(livros[i]);
+				}	
+			} break;
+
+			case 'd': case 'D': 
+			{
+
+			} break;
+
+			case 'e': case 'E':
+			{
+				//Melhorar UI
+				cout << "Informe o nome do escritor: ";
+				string escritor;
+				/**
+				 * cin >> ws, artificio usado para contornar problema de buffer
+				 * Disponivel em: https://www.geeksforgeeks.org/problem-with-getline-after-cin/.
+				 */ 
+				getline(cin >> ws, escritor); 
+				
+				string nao = (hasAudioBook(livros, escritor)) ? (" ") : (" nao ");
+
+				cout << "O escritor '" << escritor << "'" << nao << "possui AudioBooks" << endl; 
+			} break;
+
+			case 'f': case 'F':
+			{
+				//Melhorar UI
+				cout << "Informe o Titulo: ";
+				string titulo;
+				/**
+				 * cin >> ws, artificio usado para contornar problema de buffer
+				 * Disponivel em: https://www.geeksforgeeks.org/problem-with-getline-after-cin/.
+				 */ 
+				getline(cin >> ws, titulo); 
+
+				vector<Livro*> livrosTitulo = livrosByTitulo(livros, titulo);
+
+				if (livrosTitulo.size() == 0)
+				{
+					cout << "Nenhum livro foi encontrado" << endl;
+					break;
+				}
+
+				for (int i = 0; i < livrosTitulo.size(); ++i)
+				{
+					//Substituir por implementacao do Romulo
+					printTeste(livrosTitulo[i]);
+				}
+
+			} break;
+
+			case 'j': case 'J':
+			{
+				mostrarOuSalvarColecaoLivro();		
+			}
+
+			case 'k': case 'K':
+			{
+				string keyword;
+				cin >> keyword;
+				//validar Keyword digitada? 
+
+				cout << "Quantidade de livros com Keyword " << keyword << ": " << quantidadeKeywordColecaoLivro(livros, keyword) << endl;		
+			}
+
+			case 'l': case 'L':
+			{
+				mapeamentoColecaoLivro();		
+			}
+
+			case '0': break;
+
+			default:
+				cout << "Opcao Invalida" << endl;
+				menu();
 				break;
-			}
-
-			for (int i = 0; i < livrosTitulo.size(); ++i)
-			{
-				//Substituir por implementacao do Romulo
-				printTeste(livrosTitulo[i]);
-			}
-
-		} break;
-
-		case 'j':{
-			mostrarOuSalvarColecaoLivro();		
 		}
-
-		case 'k':{
-			string keyword;
-			cin >> keyword;
-			//validar Keyword digitada? 
-
-			cout << "Quantidade de livros com Keyword " << keyword << ": " << quantidadeKeywordColecaoLivro(livros, keyword) << endl;		
-		}
-
-		case 'l':{
-			mapeamentoColecaoLivro();		
-		}
-
-	}
+	} while(op != '0');
 
 	return 0;
+}
+
+char menu()
+{
+	cout << endl;
+	cout << ".---------------------------." << endl;
+	cout << "|          FUNCOES          |" << endl;
+	cout << "`---------------------------`" << endl;
+	cout << endl;
+	cout << "a) Exibir Livros" << endl;
+	cout << "b) Filtrar Livros por Idioma" << endl;
+	cout << "c) Filtrar Livros Eletronicos por Formato" << endl;
+	cout << "d) Filtrar Livros Impressos por quantidade em livrarias" << endl;
+	cout << "e) Verificar se escritor possui AudioBook" << endl;
+	cout << "f) Filtrar Livros por Titulo" << endl;
+	cout << "g) Exibir todos os Keywords" << endl;
+	cout << "h) Filtrar Livros por quantidade de Capitulos" << endl;
+	cout << "i) kkkkkk n entendi esse item" << endl;
+	cout << "j) Exibir todos os tipos de Livros" << endl;
+	cout << "k) Exibir a quantidade de Livros que contem uma keyword" << endl;
+	cout << "l) tbm n entendi esse item" << endl;
+	cout << "0) SAIR" << endl;
+
+	char op;
+	cout << endl;
+	cout << " * Escolha a opcao informando a letra correspondente: " << endl; //Melhorar
+	cin >> op;
+
+	return op;
 }
 
 void mostrarOuSalvarColecaoLivro(){
