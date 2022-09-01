@@ -50,7 +50,7 @@ int main(int argc, char const *argv[])
 	/* print teste*/
 	for (int i = 0; i < livros.size(); ++i)
 	{
-		printTeste(livros[i]);
+		//printTeste(livros[i]);
 	}
 
 
@@ -94,10 +94,8 @@ int main(int argc, char const *argv[])
 			 */ 
 			getline(cin >> ws, titulo); 
 
-			vector<Livro*> livrosTitulo;
-			livrosTitulo = livrosByTitulo(livros, titulo);
+			vector<Livro*> livrosTitulo = livrosByTitulo(livros, titulo);
 
-			cout << "livrosTitulo.size(): " << livrosTitulo.size() << endl;
 			if (livrosTitulo.size() == 0)
 			{
 				cout << "Nenhum livro foi encontrado" << endl;
@@ -106,7 +104,7 @@ int main(int argc, char const *argv[])
 
 			for (int i = 0; i < livrosTitulo.size(); ++i)
 			{
-				cout << "aaaaaa" << endl;
+				//Substituir por implementacao do Romulo
 				printTeste(livrosTitulo[i]);
 			}
 
@@ -225,4 +223,6 @@ vector<Livro*> livrosByTitulo(vector<Livro*> &livros, string titulo)
 			printTeste(livro);
 		}
 	}
+
+	return livrosTitulo;
 }
