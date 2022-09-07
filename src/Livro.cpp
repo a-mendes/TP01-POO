@@ -3,12 +3,12 @@
 Livro::Livro()
 {}
 
-vector<string> Livro::getEscritores()
+list<string> Livro::getEscritores()
 {
 	return this->escritores;
 }
 
-void Livro::setEscritores(vector<string> escritores)
+void Livro::setEscritores(list<string> escritores)
 {
 	this->escritores = escritores;
 }
@@ -23,12 +23,12 @@ void Livro::setTitulo(string titulo)
 	this->titulo = titulo;
 }
 
-vector<string> Livro::getCapitulos()
+list<string> Livro::getCapitulos()
 {
 	return this->capitulos;
 }
 
-void Livro::setCapitulos(vector<string> capitulos)
+void Livro::setCapitulos(list<string> capitulos)
 {
 	this->capitulos = capitulos;
 }
@@ -53,12 +53,12 @@ void Livro::setIdiomaOriginal(string idiomaOriginal)
 	this->idiomaOriginal = idiomaOriginal;
 }
 
-vector<string> Livro::getKeywords()
+list<string> Livro::getKeywords()
 {
 	return this->keywords;
 }
 
-void Livro::setKeywords(vector<string> keywords)
+void Livro::setKeywords(list<string> keywords)
 {
 	this->keywords = keywords;
 }

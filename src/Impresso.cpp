@@ -1,9 +1,9 @@
 #include "headers/Impresso.h"
 
-vector<string> Impresso::getLivrarias(){
+list<string> Impresso::getLivrarias(){
     return this->livrarias;
 }
-void Impresso::setLivrarias(vector<string> livrarias){
+void Impresso::setLivrarias(list<string> livrarias){
 	this->livrarias = livrarias;
 }
 

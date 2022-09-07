@@ -2,7 +2,7 @@
 #define LIVRO_H_
 
 #include <string>
-#include <vector>
+#include <list>
 
 //Verificar boa prática
 using namespace std;
@@ -13,26 +13,26 @@ using namespace std;
 class Livro
 {	
 	private:
-		vector<string> escritores;
+		list<string> escritores;
 		string titulo;
-		vector<string> capitulos;
+		list<string> capitulos;
 		int anoPublicacao;
 		string idiomaOriginal;
-		vector<string> keywords;
+		list<string> keywords;
 
 	public:
 		Livro();
 		//Confirmar questão de classe abstrata e função virtual pura
 		virtual ~Livro();
 
-		vector<string> getEscritores();
-		void setEscritores(vector<string> escritores);
+		list<string> getEscritores();
+		void setEscritores(list<string> escritores);
 
 		string getTitulo();
 		void setTitulo(string titulo);
 
-		vector<string> getCapitulos();
-		void setCapitulos(vector<string> capitulos);
+		list<string> getCapitulos();
+		void setCapitulos(list<string> capitulos);
 
 		int getAnoPublicacao();
 		void setAnoPublicacao(int anoPublicacao);
@@ -40,8 +40,8 @@ class Livro
 		string getIdiomaOriginal();
 		void setIdiomaOriginal(string idiomaOriginal);
 
-		vector<string> getKeywords();
-		void setKeywords(vector<string> keywords);
+		list<string> getKeywords();
+		void setKeywords(list<string> keywords);
 };
 
 #endif 

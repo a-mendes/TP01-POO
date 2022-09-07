@@ -7,8 +7,8 @@
 
 char menu();
 
-bool hasAudioBook(vector<Livro*> &livros, string escritor);
-vector<Livro*> livrosByTitulo(vector<Livro*> &livros, string titulo);
+bool hasAudioBook(list<Livro*> &livros, string escritor);
+list<Livro*> livrosByTitulo(list<Livro*> &livros, string titulo);
 
 //Deletar isso depois
 void printTeste(Livro *livro)
@@ -24,7 +24,7 @@ void printTeste(Livro *livro)
 }
 
 void mostrarOuSalvarColecaoLivro();
-int quantidadeKeywordColecaoLivro(vector<Livro*> &livros, string keyword);
+int quantidadeKeywordColecaoLivro(list<Livro*> &livros, string keyword);
 void mapeamentoColecaoLivro();
 
 int main(int argc, char const *argv[])
@@ -46,7 +46,7 @@ int main(int argc, char const *argv[])
 	 * Colecao unica de livros
 	 * 		- Contem os livros fornecidos pelos arquivos .txt
 	 */
-	vector<Livro*> livros;
+	list<Livro*> livros;
 	lerBaseDeDados(livros);
 
 	char op = '*';
@@ -97,7 +97,7 @@ int main(int argc, char const *argv[])
 				 */ 
 				getline(cin >> ws, titulo); 
 
-				vector<Livro*> livrosTitulo = livrosByTitulo(livros, titulo);
+				list<Livro*> livrosTitulo = livrosByTitulo(livros, titulo);
 
 				if (livrosTitulo.size() == 0)
 				{
@@ -188,9 +188,9 @@ bool stringIguais(string primeira, string segunda){
 	return false;
 }
 
-int quantidadeKeywordColecaoLivro(vector<Livro*> &livros, string keyword){
+int quantidadeKeywordColecaoLivro(list<Livro*> &livros, string keyword){
 	int countVar = 0;
-	vector<string> vetorKeywords;
+	list<string> vetorKeywords;
 
 	for (int i = 0; i < 16; i++){
 		vetorKeywords = livros[i]->getKeywords(); 
@@ -214,7 +214,7 @@ void mapeamentoColecaoLivro(){
 }
 
 //Verificar escopo adequado
-vector<Impresso> qtdLivrarias(vector<Livro*> &livros, int qtd)
+list<Impresso> qtdLivrarias(list<Livro*> &livros, int qtd)
 { 
 	//Quantidade de livros em livrarias ou a quantidade de livrarias que possuem o livro?
 	
@@ -225,7 +225,7 @@ vector<Impresso> qtdLivrarias(vector<Livro*> &livros, int qtd)
 }
 
 //Verificar escopo adequado
-bool hasAudioBook(vector<Livro*> &livros, string escritor)
+bool hasAudioBook(list<Livro*> &livros, string escritor)
 {
 	for (int i = 0; i < livros.size(); ++i)
 	{
@@ -244,7 +244,7 @@ bool hasAudioBook(vector<Livro*> &livros, string escritor)
 			/**
 			 * Compara todos os escritores do AudioBook com o escritor buscado
 			 */ 
-			vector<string> escritores = livro->getEscritores();
+			list<string> escritores = livro->getEscritores();
 			for (int i = 0; i < escritores.size(); ++i)
 			{
 				if(escritores[i] == escritor)
@@ -256,9 +256,9 @@ bool hasAudioBook(vector<Livro*> &livros, string escritor)
 	return false;
 }
 
-vector<Livro*> livrosByTitulo(vector<Livro*> &livros, string titulo)
+list<Livro*> livrosByTitulo(list<Livro*> &livros, string titulo)
 {
-	vector<Livro*> livrosTitulo;
+	list<Livro*> livrosTitulo;
 
 	for (int i = 0; i < livros.size(); ++i)
 	{

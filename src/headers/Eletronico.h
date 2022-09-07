@@ -2,7 +2,7 @@
 #define ELETRONICO
 
 #include <string>
-#include <vector>
+#include <list>
 #include "Livro.h"
 
 //Verificar boa prática

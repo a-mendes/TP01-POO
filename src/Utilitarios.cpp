@@ -1,7 +1,7 @@
 #include "headers/Utilitarios.h"
 
 //Verificar escopo adequado para essa função
-void lerBaseDeDados(vector<Livro*> &livros)
+void lerBaseDeDados(list<Livro*> &livros)
 {
 	//cout << "Lendo Base de Dados..." << endl;
 	for (int i = 0; i < QTD_LIVROS; ++i)
@@ -69,7 +69,7 @@ void lerLivro(ifstream &arquivo, Livro *livro)
 	 */ 
 	string strEscritores;
 	getline(arquivo, strEscritores);
-	vector<string> escritores;
+	list<string> escritores;
 	split(strEscritores, escritores, ';');
 	livro->setEscritores(escritores);
 
@@ -92,7 +92,7 @@ void lerLivro(ifstream &arquivo, Livro *livro)
 	 */ 
 	string strKeywords;
 	getline(arquivo, strKeywords);
-	vector<string> keywords;
+	list<string> keywords;
 	split(strKeywords, keywords, ';');
 	livro->setKeywords(keywords);
 	
@@ -101,7 +101,7 @@ void lerLivro(ifstream &arquivo, Livro *livro)
 	 */ 
 	string strCapitulos;
 	getline(arquivo, strCapitulos);
-	vector<string> capitulos;
+	list<string> capitulos;
 	split(strCapitulos, capitulos, ';');
 	livro->setKeywords(capitulos);
 }
@@ -156,7 +156,7 @@ void lerImpresso(ifstream &arquivo, Impresso *impresso)
 	 */ 
 	string strLivrarias;
 	getline(arquivo, strLivrarias);
-	vector<string> livrarias;
+	list<string> livrarias;
 	split(strLivrarias, livrarias, ';');
 	impresso->setLivrarias(livrarias);
 	
@@ -168,7 +168,7 @@ void lerImpresso(ifstream &arquivo, Impresso *impresso)
 	impresso->setColunas(stoi(colunas));
 }
 
-void split(const string &str, vector<string> &cont, char delim = ' ') 
+void split(const string &str, list<string> &cont, char delim = ' ') 
 { 
 	stringstream ss(str); 
 	string token;
