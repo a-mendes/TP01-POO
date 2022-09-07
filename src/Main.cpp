@@ -58,11 +58,21 @@ int main(int argc, char const *argv[])
 		{
 			case 'a': case 'A':
 			{
-				/* print teste*/
+				//trocar por implementacao do romulo
 				for (int i = 0; i < livros.size(); ++i)
 				{
 					printTeste(livros[i]);
 				}	
+			} break;
+
+			case 'b': case 'B': 
+			{
+
+			} break;
+
+			case 'c': case 'C': 
+			{
+
 			} break;
 
 			case 'd': case 'D': 
@@ -113,10 +123,25 @@ int main(int argc, char const *argv[])
 
 			} break;
 
+			case 'g': case 'G':
+			{
+					
+			} break;
+
+			case 'h': case 'H':
+			{
+					
+			} break;
+
+			case 'i': case 'I':
+			{
+					
+			} break;
+
 			case 'j': case 'J':
 			{
 				mostrarOuSalvarColecaoLivro();		
-			}
+			} break;
 
 			case 'k': case 'K':
 			{
@@ -125,12 +150,12 @@ int main(int argc, char const *argv[])
 
 				cout << "Keyword: "; getline(cin, keyword);
 				cout << "Quantidade de livros com Keyword " << keyword << ": " << quantidadeKeywordColecaoLivro(livros, keyword) << endl;
-			}
+			} break;
 
 			case 'l': case 'L':
 			{
 				mapeamentoColecaoLivro();		
-			}
+			} break;
 
 			case '0': break;
 
@@ -159,7 +184,7 @@ char menu()
 	cout << "f) Filtrar Livros por Titulo" << endl;
 	cout << "g) Exibir todos os Keywords" << endl;
 	cout << "h) Filtrar Livros por quantidade de Capitulos" << endl;
-	cout << "i) kkkkkk n ent	endi esse item" << endl;
+	cout << "i) kkkkkk n entendi esse item" << endl;
 	cout << "j) Exibir todos os tipos de Livros" << endl;
 	cout << "k) Exibir a quantidade de Livros que contem uma keyword" << endl;
 	cout << "l) tbm n entendi esse item" << endl;
@@ -179,13 +204,6 @@ void mostrarOuSalvarColecaoLivro(){
 	// Mostrar os dados comuns e específicos do livro conforme o item a). Um argumento                         
 	// passado para a função define qual será a saída. Nesse caso é necessário                         
 	// downcasting.
-}
-
-bool stringIguais(string primeira, string segunda){
-	if(primeira == segunda)
-		return true;
-	
-	return false;
 }
 
 int quantidadeKeywordColecaoLivro(vector<Livro*> &livros, string keyword){
