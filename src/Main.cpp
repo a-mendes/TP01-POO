@@ -121,10 +121,10 @@ int main(int argc, char const *argv[])
 			case 'k': case 'K':
 			{
 				string keyword;
-				cin >> keyword;
-				//validar Keyword digitada? 
+				cin.ignore();
 
-				cout << "Quantidade de livros com Keyword " << keyword << ": " << quantidadeKeywordColecaoLivro(livros, keyword) << endl;		
+				cout << "Keyword: "; getline(cin, keyword);
+				cout << "Quantidade de livros com Keyword " << keyword << ": " << quantidadeKeywordColecaoLivro(livros, keyword) << endl;
 			}
 
 			case 'l': case 'L':
@@ -159,7 +159,7 @@ char menu()
 	cout << "f) Filtrar Livros por Titulo" << endl;
 	cout << "g) Exibir todos os Keywords" << endl;
 	cout << "h) Filtrar Livros por quantidade de Capitulos" << endl;
-	cout << "i) kkkkkk n entendi esse item" << endl;
+	cout << "i) kkkkkk n ent	endi esse item" << endl;
 	cout << "j) Exibir todos os tipos de Livros" << endl;
 	cout << "k) Exibir a quantidade de Livros que contem uma keyword" << endl;
 	cout << "l) tbm n entendi esse item" << endl;
@@ -181,18 +181,24 @@ void mostrarOuSalvarColecaoLivro(){
 	// downcasting.
 }
 
+bool stringIguais(string primeira, string segunda){
+	if(primeira == segunda)
+		return true;
+	
+	return false;
+}
+
 int quantidadeKeywordColecaoLivro(vector<Livro*> &livros, string keyword){
-	// Dado uma keyword, criar uma função que retorne a quantidade de livros que                       
-	// possuam aquela keyword dentro uma coleção, seja ela qual for (livro, impresso,                     
-	// eletrônico ou audiobook). No main deve ser mostrado a quantidade encontrada.
+	int countVar = 0;
+	vector<string> vetorKeywords;
 
-	//Buscas pela Keyword por todas os compos do livro	
-
-	//verificar qual o tipo do livro
-	//fazer o dawncasting
-	//buscar pela Keyword e incrementar no retorno
-
-	return 1;
+	for (int i = 0; i < 16; i++){
+		vetorKeywords = livros[i]->getKeywords(); 
+		if(count(vetorKeywords.begin(), vetorKeywords.end(), keyword) > 0)
+			countVar += 1;
+	}
+	
+	return countVar;
 
 }
 
