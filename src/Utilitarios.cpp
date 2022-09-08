@@ -103,7 +103,7 @@ void lerLivro(ifstream &arquivo, Livro *livro)
 	getline(arquivo, strCapitulos);
 	vector<string> capitulos;
 	split(strCapitulos, capitulos, ';');
-	livro->setKeywords(capitulos);
+	livro->setCapitulos(capitulos);
 }
 
 //Verificar escopo adequado para essa função
