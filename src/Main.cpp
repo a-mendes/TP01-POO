@@ -13,12 +13,31 @@ vector<Livro*> livrosByTitulo(vector<Livro*> &livros, string titulo);
 //Deletar isso depois
 void printTeste(Livro *livro)
 {
-	cout << "Tipo livro: " << typeid(*livro).name() << endl;
-	cout << "\t" << livro->getTitulo() << endl;
-	cout << "\t" << livro->getAnoPublicacao() << endl;
+	cout << "======================================" << endl;
 
+	cout << "Tipo livro: " << endl;
+	cout << "\t" << typeid(*livro).name() << endl;
+	
+	cout << "Titulo: " << endl;
+	cout << "\t" << livro->getTitulo() << endl;
+
+	cout << "Ano publicacao: " << endl;
+	cout << "\t" << livro->getAnoPublicacao() << endl;
+	
+	cout << "Idioma: " << endl;
+	cout << "\t" << livro->getIdiomaOriginal() << endl;
+
+	cout << "Escritores: " << endl;
 	for (int j = 0; j < livro->getEscritores().size(); ++j)
 		cout << "\t" << livro->getEscritores()[j] << endl;
+
+	cout << "Keywords: " << endl;	
+	for (int j = 0; j < livro->getKeywords().size(); ++j)
+		cout << "\t" << livro->getKeywords()[j] << endl;
+
+	cout << "Capitulos: " << endl;
+	for (int j = 0; j < livro->getCapitulos().size(); ++j)
+		cout << "\t" << livro->getCapitulos()[j] << endl;
 
 	cout << endl;
 }
