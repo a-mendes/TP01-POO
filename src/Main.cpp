@@ -9,6 +9,8 @@ char menu();
 
 bool hasAudioBook(vector<Livro*> &livros, string escritor);
 vector<Livro*> livrosByTitulo(vector<Livro*> &livros, string titulo);
+vector<Impresso*> qtdLivrosEmLivrarias(vector<Livro*> &livros, int qtd);
+
 
 //Deletar isso depois
 void printTeste(Livro *livro)
@@ -96,6 +98,24 @@ int main(int argc, char const *argv[])
 
 			case 'd': case 'D': 
 			{
+				//Melhorar UI
+				cout << "Informe a quantidade de Livros: ";
+				int qtdLivros;
+				cin >> qtdLivros;
+
+				vector<Impresso*> livrosEmLivrarias = qtdLivrosEmLivrarias(livros, qtdLivros);
+
+				if (livrosEmLivrarias.size() == 0)
+				{
+					cout << "Nenhum livro foi encontrado" << endl;
+					break;
+				}
+
+				for (int i = 0; i < livrosEmLivrarias.size(); ++i)
+				{
+					//Substituir por implementacao do Romulo
+					printTeste(livrosEmLivrarias[i]);
+				}
 
 			} break;
 
@@ -105,7 +125,7 @@ int main(int argc, char const *argv[])
 				cout << "Informe o nome do escritor: ";
 				string escritor;
 				/**
-				 * cin >> ws, artificio usado para contornar problema de buffer
+				 * cin >> ws, artificio tecnico usado para contornar problema de buffer
 				 * Disponivel em: https://www.geeksforgeeks.org/problem-with-getline-after-cin/.
 				 */ 
 				getline(cin >> ws, escritor); 
@@ -266,14 +286,34 @@ void mapeamentoColecaoLivro(){
 }
 
 //Verificar escopo adequado
-vector<Impresso> qtdLivrarias(vector<Livro*> &livros, int qtd)
+vector<Impresso*> qtdLivrosEmLivrarias(vector<Livro*> &livros, int qtd)
 { 
 	//Quantidade de livros em livrarias ou a quantidade de livrarias que possuem o livro?
-	
+	vector<Impresso*> livrosEmLivrarias;
+
 	for (int i = 0; i < livros.size(); ++i)
 	{
-		/* code */
+		Livro *livro = livros[i];
+
+		/**
+		 * Variavel auxiliar para identificar instancia do objeto
+		 */
+		Livro *impresso = new Impresso();
+
+		/**
+		 * Verifica se o objeto atual pertence a Classe Impresso
+		 */
+		if(typeid(*livro).name() == typeid(*impresso).name())
+		{ 
+			Impresso *livroImpresso = dynamic_cast<Impresso *>(livro);
+			vector<string> livrarias = livroImpresso->getLivrarias();
+
+			if(livrarias.size() >= qtd)
+				livrosEmLivrarias.push_back(livroImpresso);
+		}
 	}
+
+	return livrosEmLivrarias;
 }
 
 //Verificar escopo adequado
@@ -319,8 +359,6 @@ vector<Livro*> livrosByTitulo(vector<Livro*> &livros, string titulo)
 		if (livro->getTitulo() == titulo)
 		{
 			livrosTitulo.push_back(livro);
-
-			printTeste(livro);
 		}
 	}
 
