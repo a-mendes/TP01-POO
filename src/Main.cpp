@@ -42,7 +42,7 @@ void printTeste(Livro *livro)
 	cout << endl;
 }
 
-void mostrarOuSalvarColecaoLivro();
+void mostrarOuSalvarColecaoLivro(vector<Livro*> &livros, int arquivoConsole);
 int quantidadeKeywordColecaoLivro(vector<Livro*> &livros, string keyword);
 void mapeamentoColecaoLivro();
 
@@ -159,7 +159,11 @@ int main(int argc, char const *argv[])
 
 			case 'j': case 'J':
 			{
-				mostrarOuSalvarColecaoLivro();		
+				int mostrarSalvar;
+				cout << "1: Mostrar Dados Console. 2: Escrever no Arquivo: ";
+				cin >> mostrarSalvar;
+				mostrarOuSalvarColecaoLivro(livros, mostrarSalvar);
+				return 1;		
 			} break;
 
 			case 'k': case 'K':
@@ -217,12 +221,23 @@ char menu()
 	return op;
 }
 
-void mostrarOuSalvarColecaoLivro(){
+void mostrarOuSalvarColecaoLivro(vector<Livro*> &livros, int arquivoConsole){
 	// Criar uma função que recebe uma unica coleção de livros de todos os tipos e que                             
 	// mostre no terminal ou salve em um arquivo (saida.txt) todos os tipos de livros.                      
 	// Mostrar os dados comuns e específicos do livro conforme o item a). Um argumento                         
 	// passado para a função define qual será a saída. Nesse caso é necessário                         
 	// downcasting.
+	
+	fstream arquivo;
+	if(arquivoConsole == 2)
+			arquivo.open("data/saida.txt", ios::out);
+
+	for (int i = 0; i < 16; i++){
+		if(arquivoConsole == 2)
+			arquivo << livros[i];
+		else if(arquivoConsole == 1)
+			cout << livros[i];
+	}
 }
 
 int quantidadeKeywordColecaoLivro(vector<Livro*> &livros, string keyword){
