@@ -10,7 +10,7 @@ char menu();
 bool hasAudioBook(vector<Livro*> &livros, string escritor);
 vector<Livro*> livrosByTitulo(vector<Livro*> &livros, string titulo);
 vector<Impresso*> qtdLivrosEmLivrarias(vector<Livro*> &livros, int qtd);
-
+vector <string> printKeywords(vector<Livro*> &livros);
 
 //Deletar isso depois
 void printTeste(Livro *livro)
@@ -58,7 +58,7 @@ int main(int argc, char const *argv[])
 	cout << endl;
 	cout << "Ana Laura Siqueira Mendes - 20.2.4091" << endl;
 	//Acertem os nomes e matricula de vcs amiguinhos
-	cout << "Guilherme Salim Sapequinha" << endl;
+	cout << "Guilherme Salim Monteiro de Castro Paes - 21.1.4109" << endl;
 	cout << "Mateus" << endl;
 	cout << "Romulo Junio Vieira Rocha - 21.1.4022" << endl;
 	cout << endl;
@@ -167,7 +167,11 @@ int main(int argc, char const *argv[])
 
 			case 'g': case 'G':
 			{
-					
+                vector<string> keywords = printKeywords(livros);
+				for(int i = 0; i < keywords.size();i++){
+					cout << keywords[i] << "; ";
+				}
+				cout << endl;
 			} break;
 
 			case 'h': case 'H':
@@ -408,4 +412,20 @@ vector<Livro*> livrosByTitulo(vector<Livro*> &livros, string titulo)
 	}
 
 	return livrosTitulo;
+}
+
+vector <string> printKeywords(vector<Livro*> &livros){
+	vector<string> keywords;
+	vector <string> :: iterator it;
+	int k = 0;
+	for(int i = 0; i < QTD_LIVROS; i++){
+		for(int j = 0; j < livros[i]->getKeywords().size(); j++){
+			if(count(keywords.begin(), keywords.end(), livros[i]->getKeywords()[j]) == 0){
+				it = keywords.begin() + k;
+				keywords.insert(it, livros[i]->getKeywords()[j]);
+				k+=1;
+			}
+		}
+	}
+	return keywords;
 }
