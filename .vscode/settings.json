@@ -4,6 +4,7 @@
         "iostream": "cpp",
         "typeinfo": "cpp",
         "fstream": "cpp",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "list": "cpp"
     }
 }

@@ -2,7 +2,8 @@
  * Demais imports sao feitos por "headers/Utilitarios.h"
  */
 #include "headers/Utilitarios.h"
-
+#include<vector>
+#include <algorithm>
 #include <typeinfo>
 
 char menu();
@@ -12,7 +13,9 @@ vector<Livro*> livrosByTitulo(vector<Livro*> &livros, string titulo);
 vector<Impresso*> qtdLivrosEmLivrarias(vector<Livro*> &livros, int qtd);
 vector <string> printKeywords(vector<Livro*> &livros);
 
+vector<Livro*> livrosByID(string idioma,vector<Livro*>&livros);
 
+vector<Eletronico*> livrosEByFormato(string idioma,vector<Livro*>&livros);
 
 void mostrarOuSalvarColecaoLivro(vector<Livro*> &livros, int arquivoConsole);
 int quantidadeKeywordColecaoLivro(vector<Livro*> &livros, string keyword);
@@ -55,17 +58,43 @@ int main(int argc, char const *argv[])
 					cout << *livros[i];
 
 				}
-				return 0;	
+			
 			} break;
 
 			case 'b': case 'B': 
 			{
+				cout << "Informe o Idioma: \n";
+				string idioma;
+				cin>> idioma;
 
+				
+				vector<Livro*>recebelivros = livrosByID(idioma,livros);
+				//vector<Livro*>recebelivros = livros;
+				
+				cout << "O idoma " << idioma << " " << "esta presente nos seguintes livros:"  << endl; 
+				for (int i = 0; i < recebelivros.size(); i++)
+				{
+					cout <<*recebelivros[i];
+				}
+				return 0;
 			} break;
 
-			case 'c': case 'C': 
+			case 'c': case 'C':
 			{
+				cout << "Informe o formato: \n";
+				string formato;
+				cin>> formato;
 
+				
+				vector<Eletronico*>recebelivros = livrosEByFormato(formato,livros);
+				//vector<Livro*>recebelivros = livros;
+				
+				cout << "O formato " << formato << " " << "esta presente nos seguintes livros:"  << endl; 
+				for (int i = 0; i < recebelivros.size(); i++)
+				{
+					cout <<*recebelivros[i];
+				}
+				return 0;
 			} break;
 
 			case 'd': case 'D': 
@@ -129,8 +158,7 @@ int main(int argc, char const *argv[])
 
 				for (int i = 0; i < livrosTitulo.size(); ++i)
 				{
-					//Substituir por implementacao do Romulo
-					//printTeste(livrosTitulo[i]);
+					cout<<*livrosTitulo[i];
 				}
 
 			} break;
@@ -399,3 +427,42 @@ vector <string> printKeywords(vector<Livro*> &livros){
 	}
 	return keywords;
 }
+
+vector<Livro*> livrosByID(string idioma,vector<Livro*>&livros){
+	vector<Livro*> livrosIdioma;
+	
+	for (int i = 0; i < livros.size(); ++i)
+	{
+		Livro *livro = livros[i];
+		//cout<<"\n"<<*livro;
+		if (livro->getIdiomaOriginal() == idioma)
+			livrosIdioma.push_back(livro);
+		
+	}
+
+	return livrosIdioma;
+}
+
+vector<Eletronico*> livrosEByFormato(string formato,vector<Livro*>&livros){
+	vector<Eletronico*> livrosEletronicos;
+	
+	for (int i = 0; i < livros.size(); ++i)
+	{
+		Livro *livro = livros[i];
+		Livro *aux = new Eletronico();
+		
+		if(typeid(*livro).name() == typeid(*aux).name()){
+			Eletronico *eletronico = dynamic_cast<Eletronico *>(livro);
+			if (eletronico->getFormatoArquivo() == formato)
+				livrosEletronicos.push_back(eletronico);
+		}
+	}
+	//sort(livrosEletronicos.begin(), livrosEletronicos.end(), [] (Livro &x, Livro &y) { return x.getAnoPublicacao() < y.getAnoPublicacao(); });
+	return livrosEletronicos;
+}
+
+
+
+
+
+
