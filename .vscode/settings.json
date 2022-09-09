@@ -4,6 +4,7 @@
         "iostream": "cpp",
         "typeinfo": "cpp",
         "fstream": "cpp",
+<<<<<<< HEAD
         "*.tcc": "cpp",
         "array": "cpp",
         "atomic": "cpp",
@@ -45,5 +46,8 @@
         "sstream": "cpp",
         "stdexcept": "cpp",
         "streambuf": "cpp"
+=======
+        "ostream": "cpp"
+>>>>>>> e61fcf8c99a11277bd24d0d5c5da979d22ca90f1
     }
 }

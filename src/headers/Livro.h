@@ -43,7 +43,7 @@ class Livro
 		vector<string> getKeywords();
 		void setKeywords(vector<string> keywords);
 
-		friend ostream& operator<<(ostream&, Livro&);
+		friend ostream& operator<<(ostream&, const Livro&);
 		
 };
 
