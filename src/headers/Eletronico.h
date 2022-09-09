@@ -21,6 +21,7 @@ class Eletronico : public Livro {
 		string getFormatoArquivo();
 		void setFormatoArquivo(string formatoArquivo);	
 
+		friend ostream& operator<<(ostream&, const Eletronico&);
 };
 
 #endif 

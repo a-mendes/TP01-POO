@@ -1,4 +1,5 @@
 #include "headers/AudioBook.h"
+#include <iostream>
 
 Livro::~Livro()
 {}
@@ -17,3 +18,12 @@ string AudioBook::getFormatoArquivo(){
 void AudioBook::setFormatoArquivo(string formatoArquivo){
     this->formatoArquivo = formatoArquivo;
 }	
+
+ostream& operator<<(ostream& os, const AudioBook& audioBook)
+{
+	os << "Duracao: " << audioBook.duracao << "\n";
+
+	os << "FormatoArquivo: " << audioBook.formatoArquivo << "\n";
+
+	return os;
+}

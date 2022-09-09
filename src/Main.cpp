@@ -82,8 +82,11 @@ int main(int argc, char const *argv[])
 				//trocar por implementacao do romulo
 				for (int i = 0; i < livros.size(); ++i)
 				{
-					printTeste(livros[i]);
-				}	
+					cout << *livros[i];
+					cout << "---------\n";
+
+				}
+				return 0;	
 			} break;
 
 			case 'b': case 'B': 
@@ -252,11 +255,53 @@ void mostrarOuSalvarColecaoLivro(vector<Livro*> &livros, int arquivoConsole){
 	if(arquivoConsole == 2)
 			arquivo.open("data/saida.txt", ios::out);
 
-	for (int i = 0; i < 16; i++){
-		if(arquivoConsole == 2)
-			arquivo << livros[i];
-		else if(arquivoConsole == 1)
-			cout << livros[i];
+	for (int i = 0; i < livros.size(); i++){
+		if(typeid(*livros[i]).name() == typeid(Impresso).name()){
+			Impresso *livroImpresso = dynamic_cast<Impresso*>(livros[i]);
+			if(arquivoConsole == 1){
+				cout << "Tipo Impresso\n";
+				cout << *livros[i];
+				cout << *livroImpresso;
+				cout << "----------\n";
+			}
+			else if(arquivoConsole == 2){
+				arquivo << "Tipo Impresso\n";
+				arquivo << *livros[i];
+				arquivo << *livroImpresso;
+				arquivo << "----------\n";
+			}
+
+		}
+		else if(typeid(*livros[i]).name() == typeid(Eletronico).name()){
+			Eletronico *livroEletronico = dynamic_cast<Eletronico*>(livros[i]);
+			if(arquivoConsole == 1){
+				cout << "Tipo Eletronico\n";
+				cout << *livros[i];
+				cout << *livroEletronico;
+				cout << "----------\n";
+			}
+			else if(arquivoConsole == 2){
+				arquivo << "Tipo Eletronico\n";
+				arquivo << *livros[i];
+				arquivo << *livroEletronico;
+				arquivo << "----------\n";
+			}
+		}
+		else if(typeid(*livros[i]).name() == typeid(AudioBook).name()){
+			AudioBook *livroAudioBook = dynamic_cast<AudioBook*>(livros[i]);
+			if(arquivoConsole == 1){
+				cout << "Tipo AudioBook\n";
+				cout << *livros[i];
+				cout << *livroAudioBook;
+				cout << "----------\n";
+			}
+			else if(arquivoConsole == 2){
+				arquivo << "Tipo AudioBook\n";
+				arquivo << *livros[i];
+				arquivo << *livroAudioBook;
+				arquivo << "----------\n";
+			}
+		}
 	}
 }
 
@@ -264,7 +309,7 @@ int quantidadeKeywordColecaoLivro(vector<Livro*> &livros, string keyword){
 	int countVar = 0;
 	vector<string> vetorKeywords;
 
-	for (int i = 0; i < 16; i++){
+	for (int i = 0; i < livros.size(); i++){
 		vetorKeywords = livros[i]->getKeywords(); 
 		if(count(vetorKeywords.begin(), vetorKeywords.end(), keyword) > 0)
 			countVar += 1;

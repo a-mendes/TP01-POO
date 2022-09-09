@@ -1,4 +1,5 @@
 #include "headers/Eletronico.h"
+#include <iostream>
 
 string Eletronico::getUrl(){
     return this->url;
@@ -12,4 +13,13 @@ string Eletronico::getFormatoArquivo(){
 }
 void Eletronico::setFormatoArquivo(string formatoArquivo){
     this->formatoArquivo = formatoArquivo;
+}
+
+ostream& operator<<(ostream& os, const Eletronico& eletronico)
+{
+	os << "ERL: " << eletronico.url << "\n";
+
+	os << "Formato do Arquivo: " << eletronico.formatoArquivo << "\n";
+
+	return os;
 }

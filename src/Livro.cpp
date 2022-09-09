@@ -1,4 +1,5 @@
 #include "headers/Livro.h"
+#include <iostream>
 
 Livro::Livro()
 {}
@@ -61,4 +62,21 @@ vector<string> Livro::getKeywords()
 void Livro::setKeywords(vector<string> keywords)
 {
 	this->keywords = keywords;
+}
+
+ostream& operator<<(ostream& os, const Livro& livro)
+{
+	os << "Titulo: " << livro.titulo << "\n";
+
+	os << "Escritores: " << livro.escritores[0] << "\n";
+
+	os << "Ano: " << livro.anoPublicacao << "\n";
+
+	os << "Idioma: " << livro.idiomaOriginal << "\n";
+	
+	os << "Keywords: " << livro.keywords[0] << "\n";
+
+	os << "Capitulos: " << livro.capitulos[0] << "\n";
+
+	return os;
 }

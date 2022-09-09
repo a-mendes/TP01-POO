@@ -20,6 +20,8 @@ class Impresso: public Livro {
 		
 		int getColunas();
 		void setColunas(int colunas);	
+		
+		friend ostream& operator<<(ostream&, const Impresso&);
 };
 
 
