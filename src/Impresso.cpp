@@ -18,9 +18,10 @@ void Impresso::setColunas(int colunas){
 
 ostream& operator<<(ostream& os, const Impresso& impresso)
 {
-	os << "Livraria: " << impresso.livrarias[0] << "\n";
-
-	os << "Colunas: " << impresso.colunas << "\n";
-
+	if(impresso.livrarias.size() > 0)
+		os << impresso.livrarias[0] << "\n";
+	else
+		os << "Nenhuma\n";
+		
 	return os;
 }

@@ -233,47 +233,35 @@ void mostrarOuSalvarColecaoLivro(vector<Livro*> &livros, int arquivoConsole){
 		if(typeid(*livros[i]).name() == typeid(Impresso).name()){
 			Impresso *livroImpresso = dynamic_cast<Impresso*>(livros[i]);
 			if(arquivoConsole == 1){
-				cout << "Tipo Impresso\n";
 				cout << *livros[i];
 				cout << *livroImpresso;
-				cout << "----------\n";
 			}
 			else if(arquivoConsole == 2){
-				arquivo << "Tipo Impresso\n";
 				arquivo << *livros[i];
 				arquivo << *livroImpresso;
-				arquivo << "----------\n";
 			}
 
 		}
 		else if(typeid(*livros[i]).name() == typeid(Eletronico).name()){
 			Eletronico *livroEletronico = dynamic_cast<Eletronico*>(livros[i]);
 			if(arquivoConsole == 1){
-				cout << "Tipo Eletronico\n";
 				cout << *livros[i];
 				cout << *livroEletronico;
-				cout << "----------\n";
 			}
 			else if(arquivoConsole == 2){
-				arquivo << "Tipo Eletronico\n";
 				arquivo << *livros[i];
 				arquivo << *livroEletronico;
-				//arquivo << "----------\n";
 			}
 		}
 		else if(typeid(*livros[i]).name() == typeid(AudioBook).name()){
 			AudioBook *livroAudioBook = dynamic_cast<AudioBook*>(livros[i]);
 			if(arquivoConsole == 1){
-				cout << "Tipo AudioBook\n";
 				cout << *livros[i];
 				cout << *livroAudioBook;
-				//cout << "----------\n";
 			}
 			else if(arquivoConsole == 2){
-				arquivo << "Tipo AudioBook\n";
 				arquivo << *livros[i];
 				arquivo << *livroAudioBook;
-				//arquivo << "----------\n";
 			}
 		}
 	}

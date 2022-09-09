@@ -68,78 +68,107 @@ void Livro::setKeywords(vector<string> keywords)
 	this->keywords = keywords;
 }
 
-//ostream& operator<<(ostream& os, Livro& livro)
-//{
-	//os << "Titulo: " << livro.getTitulo().resize(30, ' ') << "\n";
-	//os << "Titulo: " << livro.titulo << "\n";
+ostream& operator<<(ostream& os, const Livro& livro)
+{
+	string aux = "";
 
-// ostream& operator<<(ostream& os, const Livro& livro)
-// {
-// 	string aux;
-	
-// 	os << "Titulo: " << livro.titulo << "\n";
-	
-// 	os << "Escritores: " << livro.escritores[0] << "\n";
+	aux = livro.titulo;
+	aux.resize(30, ' ');
+	os << aux;
 
-// 	os << "Ano: " << livro.anoPublicacao << "\n";
+	os << "|";
 
-// 	os << "Idioma: " << livro.idiomaOriginal << "\n";
-	
-// 	os << "Keywords: " << livro.keywords[0] << "\n";
+	aux = "";
+	if(livro.escritores[0].size() < 30){
+		aux.resize(30 - livro.escritores[0].size(), ' ');
+		os << aux + livro.escritores[0];	
+	}
+	else if(livro.escritores[0].size() >= 30){
+		aux = livro.escritores[0];
+		aux.resize(30, ' ');
+		os << aux;	
+	}
 
-// 	os << "Capitulos: " << livro.capitulos.size() << "\n";
+	os << "|";
 
-// 	return os;
-// }
+	aux = "";
+	aux = livro.idiomaOriginal;
+	aux.resize(10, ' ');
+	os << aux;
 
-ostream& operator<<(ostream& coutOS, const  Livro& livro){
+	os << "|";
 
-	cout << "__________________________________________________________________________" << endl;
-	if (livro.titulo.size()<30)
-		{
-			coutOS<< left<<"|"<<livro.titulo;
-		}
-		else {
-			coutOS<<"|";
-			for (int i = 0; i < 30; i++)
-			{
-				coutOS<< left<<""<<livro.titulo[i];
-			}
-			
-		}
-
-	if (livro.escritores[0].size()<30)
-		{
-			coutOS<< left<<"|"<<livro.escritores[0];
-		}
-		else {
-			coutOS<<"|";
-			for (int i = 0; i < 30; i++)
-			{
-				coutOS<< left<<""<<livro.escritores[0][i];
-			}
-			
-		}
-	
-
-	coutOS<< left <<'|'<<livro.idiomaOriginal;
-	
+	aux = "";
 	if(livro.capitulos.size()<=10)
-	 	coutOS<<"|00"<< livro.capitulos.size();
+	 	os <<"  "<< livro.capitulos.size();
 	
 	else if(livro.capitulos.size()>10 &&  livro.capitulos.size()<100)
-		coutOS<<"|0"<< livro.capitulos.size();
+		os <<" "<< livro.capitulos.size();
 	
 	else
-	 	coutOS<<"|"<< livro.capitulos.size();
+	 	os << livro.capitulos.size();
 
-	
+	os << "|";
+
+	aux = "";
 	 if(livro.keywords.size()<10)
-	 	coutOS<<"|0"<<livro.keywords.size()<<"|"<<"\n"; 
+	 	os <<"  "<<livro.keywords.size(); 
 	 else
-	 	coutOS<<"|"<<livro.keywords.size()<<"|"<<"\n";
-	cout << "__________________________________________________________________________" << endl; 
+	 	os << livro.keywords.size();
+
+	os << "|";
+
+	return os;
+}
+
+// ostream& operator<<(ostream& coutOS, const  Livro& livro){
+
+// 	cout << "__________________________________________________________________________" << endl;
+// 	if (livro.titulo.size()<30)
+// 		{
+// 			coutOS<< left<<"|"<<livro.titulo;
+// 		}
+// 		else {
+// 			coutOS<<"|";
+// 			for (int i = 0; i < 30; i++)
+// 			{
+// 				coutOS<< left<<""<<livro.titulo[i];
+// 			}
+			
+// 		}
+
+// 	if (livro.escritores[0].size()<30)
+// 		{
+// 			coutOS<< left<<"|"<<livro.escritores[0];
+// 		}
+// 		else {
+// 			coutOS<<"|";
+// 			for (int i = 0; i < 30; i++)
+// 			{
+// 				coutOS<< left<<""<<livro.escritores[0][i];
+// 			}
+			
+// 		}
+	
+
+// 	coutOS<< left <<'|'<<livro.idiomaOriginal;
+	
+// 	if(livro.capitulos.size()<=10)
+// 	 	coutOS<<"|00"<< livro.capitulos.size();
+	
+// 	else if(livro.capitulos.size()>10 &&  livro.capitulos.size()<100)
+// 		coutOS<<"|0"<< livro.capitulos.size();
+	
+// 	else
+// 	 	coutOS<<"|"<< livro.capitulos.size();
 
 	
-	return coutOS;
-}
+// 	 if(livro.keywords.size()<10)
+// 	 	coutOS<<"|0"<<livro.keywords.size()<<"|"<<"\n"; 
+// 	 else
+// 	 	coutOS<<"|"<<livro.keywords.size()<<"|"<<"\n";
+// 	cout << "__________________________________________________________________________" << endl; 
+
+	
+// 	return coutOS;
+// }

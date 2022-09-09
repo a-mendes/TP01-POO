@@ -1,5 +1,6 @@
 #include "headers/AudioBook.h"
 #include <iostream>
+#include <iomanip>
 
 Livro::~Livro()
 {}
@@ -21,9 +22,9 @@ void AudioBook::setFormatoArquivo(string formatoArquivo){
 
 ostream& operator<<(ostream& os, const AudioBook& audioBook)
 {
-	os << "Duracao: " << audioBook.duracao << "\n";
 
-	os << "FormatoArquivo: " << audioBook.formatoArquivo << "\n";
+    os.setf(ios::fixed);
+    os << setprecision(2) << audioBook.duracao << "\n";
 
 	return os;
 }
