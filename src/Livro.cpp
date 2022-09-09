@@ -1,5 +1,8 @@
 #include "headers/Livro.h"
 #include <iostream>
+#include <string>
+
+using namespace std;
 
 Livro::Livro()
 {}
@@ -64,9 +67,10 @@ void Livro::setKeywords(vector<string> keywords)
 	this->keywords = keywords;
 }
 
-ostream& operator<<(ostream& os, const Livro& livro)
+ostream& operator<<(ostream& os, Livro& livro)
 {
-	os << "Titulo: " << livro.titulo << "\n";
+	//os << "Titulo: " << livro.getTitulo().resize(30, ' ') << "\n";
+	//os << "Titulo: " << livro.titulo << "\n";
 
 	os << "Escritores: " << livro.escritores[0] << "\n";
 
@@ -81,7 +85,7 @@ ostream& operator<<(ostream& os, const Livro& livro)
 	return os;
 }
 
-// ostream& operator<<(ostream& coutOS, Livro& livro){
+// ostream& operator<<(ostream& coutOS, const Livro& livro){
 // 	 coutOS<< left <<'|'<<livro.getTitulo().erase(30);
 // 	 coutOS<<right <<'|'<<livro.getEscritores().front();
 // 	 coutOS<< left <<'|'<<livro.getIdiomaOriginal();
