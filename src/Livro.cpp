@@ -100,10 +100,10 @@ ostream& operator<<(ostream& os, const Livro& livro)
 
 	aux = "";
 	if(livro.capitulos.size()<=10)
-	 	os <<"  "<< livro.capitulos.size();
+	 	os <<"00"<< livro.capitulos.size();
 	
 	else if(livro.capitulos.size()>10 &&  livro.capitulos.size()<100)
-		os <<" "<< livro.capitulos.size();
+		os <<"0"<< livro.capitulos.size();
 	
 	else
 	 	os << livro.capitulos.size();
@@ -112,7 +112,7 @@ ostream& operator<<(ostream& os, const Livro& livro)
 
 	aux = "";
 	 if(livro.keywords.size()<10)
-	 	os <<"  "<<livro.keywords.size(); 
+	 	os <<"00"<<livro.keywords.size(); 
 	 else
 	 	os << livro.keywords.size();
 
@@ -147,8 +147,7 @@ ostream& operator<<(ostream& os, const Livro& livro)
 // 			{
 // 				coutOS<< left<<""<<livro.escritores[0][i];
 // 			}
-			
-// 		}
+			// 		}
 	
 
 // 	coutOS<< left <<'|'<<livro.idiomaOriginal;
