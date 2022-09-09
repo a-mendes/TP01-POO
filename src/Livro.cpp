@@ -1,5 +1,6 @@
 #include "headers/Livro.h"
 #include <iostream>
+#include<cstring>
 
 Livro::Livro()
 {}
@@ -64,22 +65,82 @@ void Livro::setKeywords(vector<string> keywords)
 	this->keywords = keywords;
 }
 
-ostream& operator<<(ostream& os, const Livro& livro)
-{
-	os << "Titulo: " << livro.titulo << "\n";
-
-	os << "Escritores: " << livro.escritores[0] << "\n";
-
-	os << "Ano: " << livro.anoPublicacao << "\n";
-
-	os << "Idioma: " << livro.idiomaOriginal << "\n";
+// ostream& operator<<(ostream& os, const Livro& livro)
+// {
+// 	string aux;
 	
-	os << "Keywords: " << livro.keywords[0] << "\n";
+// 	os << "Titulo: " << livro.titulo << "\n";
+	
+// 	os << "Escritores: " << livro.escritores[0] << "\n";
 
-	os << "Capitulos: " << livro.capitulos[0] << "\n";
+// 	os << "Ano: " << livro.anoPublicacao << "\n";
 
-	return os;
+// 	os << "Idioma: " << livro.idiomaOriginal << "\n";
+	
+// 	os << "Keywords: " << livro.keywords[0] << "\n";
+
+// 	os << "Capitulos: " << livro.capitulos.size() << "\n";
+
+// 	return os;
+// }
+
+ostream& operator<<(ostream& coutOS,const  Livro& livro){
+
+	cout << "__________________________________________________________________________" << endl;
+	if (livro.titulo.size()<30)
+		{
+			coutOS<< left<<"|"<<livro.titulo;
+		}
+		else {
+			coutOS<<"|";
+			for (int i = 0; i < 30; i++)
+			{
+				coutOS<< left<<""<<livro.titulo[i];
+			}
+			
+		}
+
+	if (livro.escritores[0].size()<30)
+		{
+			coutOS<< left<<"|"<<livro.escritores[0];
+		}
+		else {
+			coutOS<<"|";
+			for (int i = 0; i < 30; i++)
+			{
+				coutOS<< left<<""<<livro.escritores[0][i];
+			}
+			
+		}
+	
+
+	coutOS<< left <<'|'<<livro.idiomaOriginal;
+	
+	if(livro.capitulos.size()<=10)
+	 	coutOS<<"|00"<< livro.capitulos.size();
+	
+	else if(livro.capitulos.size()>10 &&  livro.capitulos.size()<100)
+		coutOS<<"|0"<< livro.capitulos.size();
+	
+	else
+	 	coutOS<<"|"<< livro.capitulos.size();
+
+	
+	 if(livro.keywords.size()<10)
+	 	coutOS<<"|0"<<livro.keywords.size()<<"|"<<"\n"; 
+	 else
+	 	coutOS<<"|"<<livro.keywords.size()<<"|"<<"\n";
+	cout << "__________________________________________________________________________" << endl; 
+
+	
+	return coutOS;
 }
+
+
+
+
+
+
 
 // ostream& operator<<(ostream& coutOS, Livro& livro){
 // 	 coutOS<< left <<'|'<<livro.getTitulo().erase(30);

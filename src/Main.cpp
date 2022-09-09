@@ -12,37 +12,7 @@ vector<Livro*> livrosByTitulo(vector<Livro*> &livros, string titulo);
 vector<Impresso*> qtdLivrosEmLivrarias(vector<Livro*> &livros, int qtd);
 vector <string> printKeywords(vector<Livro*> &livros);
 
-//Deletar isso depois
-void printTeste(Livro *livro)
-{
-	cout << "======================================" << endl;
 
-	cout << "Tipo livro: " << endl;
-	cout << "\t" << typeid(*livro).name() << endl;
-	
-	cout << "Titulo: " << endl;
-	cout << "\t" << livro->getTitulo() << endl;
-
-	cout << "Ano publicacao: " << endl;
-	cout << "\t" << livro->getAnoPublicacao() << endl;
-	
-	cout << "Idioma: " << endl;
-	cout << "\t" << livro->getIdiomaOriginal() << endl;
-
-	cout << "Escritores: " << endl;
-	for (int j = 0; j < livro->getEscritores().size(); ++j)
-		cout << "\t" << livro->getEscritores()[j] << endl;
-
-	cout << "Keywords: " << endl;	
-	for (int j = 0; j < livro->getKeywords().size(); ++j)
-		cout << "\t" << livro->getKeywords()[j] << endl;
-
-	cout << "Capitulos: " << endl;
-	for (int j = 0; j < livro->getCapitulos().size(); ++j)
-		cout << "\t" << livro->getCapitulos()[j] << endl;
-
-	cout << endl;
-}
 
 void mostrarOuSalvarColecaoLivro(vector<Livro*> &livros, int arquivoConsole);
 int quantidadeKeywordColecaoLivro(vector<Livro*> &livros, string keyword);
@@ -83,7 +53,6 @@ int main(int argc, char const *argv[])
 				for (int i = 0; i < livros.size(); ++i)
 				{
 					cout << *livros[i];
-					cout << "---------\n";
 
 				}
 				return 0;	
@@ -116,8 +85,9 @@ int main(int argc, char const *argv[])
 
 				for (int i = 0; i < livrosEmLivrarias.size(); ++i)
 				{
+					cout<<livrosEmLivrarias[i];
 					//Substituir por implementacao do Romulo
-					printTeste(livrosEmLivrarias[i]);
+					//printTeste(livrosEmLivrarias[i]);
 				}
 
 			} break;
@@ -160,7 +130,7 @@ int main(int argc, char const *argv[])
 				for (int i = 0; i < livrosTitulo.size(); ++i)
 				{
 					//Substituir por implementacao do Romulo
-					printTeste(livrosTitulo[i]);
+					//printTeste(livrosTitulo[i]);
 				}
 
 			} break;
