@@ -1,6 +1,9 @@
 #include "headers/Livro.h"
 #include <iostream>
+#include <string>
 #include<cstring>
+
+using namespace std;
 
 Livro::Livro()
 {}
@@ -65,111 +68,106 @@ void Livro::setKeywords(vector<string> keywords)
 	this->keywords = keywords;
 }
 
-// ostream& operator<<(ostream& os, const Livro& livro)
-// {
-// 	string aux;
-	
-// 	os << "Titulo: " << livro.titulo << "\n";
-	
-// 	os << "Escritores: " << livro.escritores[0] << "\n";
+ostream& operator<<(ostream& os, const Livro& livro)
+{
+	string aux = "";
 
-// 	os << "Ano: " << livro.anoPublicacao << "\n";
+	aux = livro.titulo;
+	aux.resize(30, ' ');
+	os <<left<< aux;
 
-// 	os << "Idioma: " << livro.idiomaOriginal << "\n";
-	
-// 	os << "Keywords: " << livro.keywords[0] << "\n";
+	os << "|";
 
-// 	os << "Capitulos: " << livro.capitulos.size() << "\n";
+	aux = "";
+	if(livro.escritores[0].size() < 30){
+		aux.resize(30 - livro.escritores[0].size(), ' ');
+		os <<right<<aux + livro.escritores[0];	
+	}
+	else if(livro.escritores[0].size() >= 30){
+		aux = livro.escritores[0];
+		aux.resize(30, ' ');
+		os <<right<<aux;	
+	}
 
-// 	return os;
-// }
+	os << "|";
 
-ostream& operator<<(ostream& coutOS,const  Livro& livro){
+	aux = "";
+	aux = livro.idiomaOriginal;
+	aux.resize(10, ' ');
+	os <<left<< aux;
 
-	cout << "__________________________________________________________________________" << endl;
-	if (livro.titulo.size()<30)
-		{
-			coutOS<< left<<"|"<<livro.titulo;
-		}
-		else {
-			coutOS<<"|";
-			for (int i = 0; i < 30; i++)
-			{
-				coutOS<< left<<""<<livro.titulo[i];
-			}
-			
-		}
+	os << "|";
 
-	if (livro.escritores[0].size()<30)
-		{
-			coutOS<< left<<"|"<<livro.escritores[0];
-		}
-		else {
-			coutOS<<"|";
-			for (int i = 0; i < 30; i++)
-			{
-				coutOS<< left<<""<<livro.escritores[0][i];
-			}
-			
-		}
-	
-
-	coutOS<< left <<'|'<<livro.idiomaOriginal;
-	
+	aux = "";
 	if(livro.capitulos.size()<=10)
-	 	coutOS<<"|00"<< livro.capitulos.size();
+	 	os <<"00"<< livro.capitulos.size();
 	
 	else if(livro.capitulos.size()>10 &&  livro.capitulos.size()<100)
-		coutOS<<"|0"<< livro.capitulos.size();
+		os <<"0"<< livro.capitulos.size();
 	
 	else
-	 	coutOS<<"|"<< livro.capitulos.size();
+	 	os << livro.capitulos.size();
 
-	
+	os << "|";
+
+	aux = "";
 	 if(livro.keywords.size()<10)
-	 	coutOS<<"|0"<<livro.keywords.size()<<"|"<<"\n"; 
+	 	os <<"0"<<livro.keywords.size(); 
 	 else
-	 	coutOS<<"|"<<livro.keywords.size()<<"|"<<"\n";
-	cout << "__________________________________________________________________________" << endl; 
+	 	os << livro.keywords.size();
 
-	
-	return coutOS;
+	//os << "|\n";
+
+	return os;
 }
 
+// ostream& operator<<(ostream& coutOS, const  Livro& livro){
 
+// 	cout << "__________________________________________________________________________" << endl;
+// 	if (livro.titulo.size()<30)
+// 		{
+// 			coutOS<< left<<"|"<<livro.titulo;
+// 		}
+// 		else {
+// 			coutOS<<"|";
+// 			for (int i = 0; i < 30; i++)
+// 			{
+// 				coutOS<< left<<""<<livro.titulo[i];
+// 			}
+			
+// 		}
 
-
-
-
-
-// ostream& operator<<(ostream& coutOS, Livro& livro){
-// 	 coutOS<< left <<'|'<<livro.getTitulo().erase(30);
-// 	 coutOS<<right <<'|'<<livro.getEscritores().front();
-// 	 coutOS<< left <<'|'<<livro.getIdiomaOriginal();
-// 	 if(livro.getCapitulos().size()<=10)
-// 	 	coutOS<<"|00"<<livro.getCapitulos().size();
+// 	if (livro.escritores[0].size()<30)
+// 		{
+// 			coutOS<< left<<"|"<<livro.escritores[0];
+// 		}
+// 		else {
+// 			coutOS<<"|";
+// 			for (int i = 0; i < 30; i++)
+// 			{
+// 				coutOS<< left<<""<<livro.escritores[0][i];
+// 			}
+			// 		}
 	
-// 	// else if(livro.getCapitulos().size()>10 && livro.getCapitulos().size()<100)
-// 	// 	coutOS<<"|0"<<livro.getCapitulos().size();
-// 	 else if(livro.getCapitulos().size()>10&&livro.getCapitulos().size()<100)
-// 	 	coutOS<<"|0"<<livro.getCapitulos().size();
+
+// 	coutOS<< left <<'|'<<livro.idiomaOriginal;
 	
+// 	if(livro.capitulos.size()<=10)
+// 	 	coutOS<<"|00"<< livro.capitulos.size();
+	
+// 	else if(livro.capitulos.size()>10 &&  livro.capitulos.size()<100)
+// 		coutOS<<"|0"<< livro.capitulos.size();
+	
+// 	else
+// 	 	coutOS<<"|"<< livro.capitulos.size();
+
+	
+// 	 if(livro.keywords.size()<10)
+// 	 	coutOS<<"|0"<<livro.keywords.size()<<"|"<<"\n"; 
 // 	 else
-// 	 	coutOS<<"|"<<livro.getCapitulos().size();
+// 	 	coutOS<<"|"<<livro.keywords.size()<<"|"<<"\n";
+// 	cout << "__________________________________________________________________________" << endl; 
 
 	
-// 	 if(livro.getKeywords().size()<10){
-// 	 	coutOS<<"|0"<<livro.getKeywords().size(); }
-// 	 else{
-// 	 	coutOS<<"|"<<livro.getKeywords().size();
-// 	 }
-
-// 	coutOS << "Titulo: " << livro.getTitulo() << endl;
-// 	//coutOS << "Escritores: " << livro.getEscritores() << endl;
-// 	//coutOS << "Capitulos: " << livro.getCapitulos() << endl;
-// 	coutOS << "Ano Publicacao: " << livro.getAnoPublicacao() << endl;
-// 	coutOS << "Idioma: " << livro.getIdiomaOriginal() << endl;
-// 	//coutOS << "keywords: " << livro.getKeywords() << endl;
-
 // 	return coutOS;
 // }

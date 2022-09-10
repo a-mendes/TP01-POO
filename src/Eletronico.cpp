@@ -17,9 +17,7 @@ void Eletronico::setFormatoArquivo(string formatoArquivo){
 
 ostream& operator<<(ostream& os, const Eletronico& eletronico)
 {
-	os << "ERL: " << eletronico.url << "\n";
-
-	os << "Formato do Arquivo: " << eletronico.formatoArquivo << "\n";
+	os << eletronico.formatoArquivo << "\n";
 
 	return os;
 }
