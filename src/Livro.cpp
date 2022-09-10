@@ -74,19 +74,19 @@ ostream& operator<<(ostream& os, const Livro& livro)
 
 	aux = livro.titulo;
 	aux.resize(30, ' ');
-	os <<left<< aux;
+	os << aux;
 
 	os << "|";
 
 	aux = "";
 	if(livro.escritores[0].size() < 30){
 		aux.resize(30 - livro.escritores[0].size(), ' ');
-		os << rigth<<aux + livro.escritores[0];	
+		os << aux + livro.escritores[0];	
 	}
 	else if(livro.escritores[0].size() >= 30){
 		aux = livro.escritores[0];
 		aux.resize(30, ' ');
-		os << rigth<<aux;	
+		os << aux;	
 	}
 
 	os << "|";
@@ -94,7 +94,7 @@ ostream& operator<<(ostream& os, const Livro& livro)
 	aux = "";
 	aux = livro.idiomaOriginal;
 	aux.resize(10, ' ');
-	os <<left<< aux;
+	os << aux;
 
 	os << "|";
 
@@ -112,7 +112,7 @@ ostream& operator<<(ostream& os, const Livro& livro)
 
 	aux = "";
 	 if(livro.keywords.size()<10)
-	 	os <<"0"<<livro.keywords.size(); 
+	 	os <<"00"<<livro.keywords.size(); 
 	 else
 	 	os << livro.keywords.size();
 
