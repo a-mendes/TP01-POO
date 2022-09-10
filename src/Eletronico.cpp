@@ -17,7 +17,10 @@ void Eletronico::setFormatoArquivo(string formatoArquivo){
 
 ostream& operator<<(ostream& os, const Eletronico& eletronico)
 {
-	os << eletronico.formatoArquivo << "\n";
+    Livro livro = eletronico;
+    os << livro;
+
+	os << eletronico.formatoArquivo;
 
 	return os;
 }

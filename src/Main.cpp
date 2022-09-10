@@ -5,6 +5,7 @@
 #include<vector>
 #include <algorithm>
 #include <typeinfo>
+#include <map>
 
 char menu();
 
@@ -19,7 +20,7 @@ vector<Eletronico*> livrosEByFormato(string idioma,vector<Livro*>&livros);
 
 void mostrarOuSalvarColecaoLivro(vector<Livro*> &livros, int arquivoConsole);
 int quantidadeKeywordColecaoLivro(vector<Livro*> &livros, string keyword);
-void mapeamentoColecaoLivro();
+multimap<string, Livro> mapeamentoColecaoLivro(vector<Livro*> &livros);
 
 int main(int argc, char const *argv[])
 {                                         
@@ -52,14 +53,19 @@ int main(int argc, char const *argv[])
 		{
 			case 'a': case 'A':
 			{
-				//trocar por implementacao do romulo
 				for (int i = 0; i < livros.size(); ++i)
 				{
+<<<<<<< HEAD
 					cout << *livros[i];
 					cout<<"\n";
 
 				}
 			
+=======
+					cout << *livros[i] << "\n";
+
+				}
+>>>>>>> 2707d28f0f008792bbb420df7b72b591500a716c
 			} break;
 
 			case 'b': case 'B': 
@@ -116,9 +122,7 @@ int main(int argc, char const *argv[])
 
 				for (int i = 0; i < livrosEmLivrarias.size(); ++i)
 				{
-					cout<<livrosEmLivrarias[i];
-					//Substituir por implementacao do Romulo
-					//printTeste(livrosEmLivrarias[i]);
+					cout << *livrosEmLivrarias[i] << "\n";
 				}
 
 			} break;
@@ -160,7 +164,11 @@ int main(int argc, char const *argv[])
 
 				for (int i = 0; i < livrosTitulo.size(); ++i)
 				{
+<<<<<<< HEAD
 					cout<<*livrosTitulo[i];
+=======
+					cout << *livrosTitulo[i] << "\n";
+>>>>>>> 2707d28f0f008792bbb420df7b72b591500a716c
 				}
 
 			} break;
@@ -190,7 +198,6 @@ int main(int argc, char const *argv[])
 				cout << "1: Mostrar Dados Console. 2: Escrever no Arquivo: ";
 				cin >> mostrarSalvar;
 				mostrarOuSalvarColecaoLivro(livros, mostrarSalvar);
-				return 1;		
 			} break;
 
 			case 'k': case 'K':
@@ -204,7 +211,12 @@ int main(int argc, char const *argv[])
 
 			case 'l': case 'L':
 			{
-				mapeamentoColecaoLivro();		
+				multimap<string, Livro> mapaLivro;
+				mapaLivro = mapeamentoColecaoLivro(livros);		
+
+				for (auto &elm: mapaLivro)
+					cout << elm.second << "\n";
+
 			} break;
 
 			case '0': break;
@@ -248,13 +260,25 @@ char menu()
 	return op;
 }
 
-void mostrarOuSalvarColecaoLivro(vector<Livro*> &livros, int arquivoConsole){
-	// Criar uma função que recebe uma unica coleção de livros de todos os tipos e que                             
-	// mostre no terminal ou salve em um arquivo (saida.txt) todos os tipos de livros.                      
-	// Mostrar os dados comuns e específicos do livro conforme o item a). Um argumento                         
-	// passado para a função define qual será a saída. Nesse caso é necessário                         
-	// downcasting.
+multimap<string, Livro> mapeamentoColecaoLivro(vector<Livro*> &livros){
+	multimap<string, Livro> mapaLivro;
 	
+	for (int i = 0; i < livros.size(); i++){
+		if(livros[i]->getIdiomaOriginal() == "Ingles")
+			mapaLivro.insert(pair<string, Livro>("ING", *livros[i]));
+		else if(livros[i]->getIdiomaOriginal() == "Espanhol")
+			mapaLivro.insert(pair<string, Livro>("ESP", *livros[i]));
+		else if(livros[i]->getIdiomaOriginal() == "Frances")
+			mapaLivro.insert(pair<string, Livro>("FRS", *livros[i]));
+		else if(livros[i]->getIdiomaOriginal() == "Portugues")
+			mapaLivro.insert(pair<string, Livro>("POT", *livros[i]));
+	}
+
+	return mapaLivro;
+	
+}
+
+void mostrarOuSalvarColecaoLivro(vector<Livro*> &livros, int arquivoConsole){
 	fstream arquivo;
 	if(arquivoConsole == 2)
 			arquivo.open("data/saida.txt", ios::out);
@@ -262,37 +286,27 @@ void mostrarOuSalvarColecaoLivro(vector<Livro*> &livros, int arquivoConsole){
 	for (int i = 0; i < livros.size(); i++){
 		if(typeid(*livros[i]).name() == typeid(Impresso).name()){
 			Impresso *livroImpresso = dynamic_cast<Impresso*>(livros[i]);
-			if(arquivoConsole == 1){
-				cout << *livros[i];
-				cout << *livroImpresso;
-			}
-			else if(arquivoConsole == 2){
-				arquivo << *livros[i];
-				arquivo << *livroImpresso;
-			}
-
+			if(arquivoConsole == 1)
+				cout << *livroImpresso << "\n";
+			
+			else if(arquivoConsole == 2)
+				arquivo << *livroImpresso << "\n";
 		}
 		else if(typeid(*livros[i]).name() == typeid(Eletronico).name()){
 			Eletronico *livroEletronico = dynamic_cast<Eletronico*>(livros[i]);
-			if(arquivoConsole == 1){
-				cout << *livros[i];
-				cout << *livroEletronico;
-			}
-			else if(arquivoConsole == 2){
-				arquivo << *livros[i];
-				arquivo << *livroEletronico;
-			}
+			if(arquivoConsole == 1)
+				cout << *livroEletronico << "\n";
+			
+			else if(arquivoConsole == 2)
+				arquivo << *livroEletronico << "\n";
 		}
 		else if(typeid(*livros[i]).name() == typeid(AudioBook).name()){
 			AudioBook *livroAudioBook = dynamic_cast<AudioBook*>(livros[i]);
-			if(arquivoConsole == 1){
-				cout << *livros[i];
-				cout << *livroAudioBook;
-			}
-			else if(arquivoConsole == 2){
-				arquivo << *livros[i];
-				arquivo << *livroAudioBook;
-			}
+			if(arquivoConsole == 1)
+				cout << *livroAudioBook << "\n";
+			
+			else if(arquivoConsole == 2)
+				arquivo << *livroAudioBook << "\n";
 		}
 	}
 }
@@ -311,17 +325,6 @@ int quantidadeKeywordColecaoLivro(vector<Livro*> &livros, string keyword){
 
 }
 
-void mapeamentoColecaoLivro(){
-	// Criar uma função que recebe uma única coleção de livros de todos os tipos, além                           
-	// de uma estrutura capaz de realizar o mapeamento a seguir (No main mostrar o                         
-	// resultado):
-
-	// i. Inglês = ING;
-	// ii. Espanhol = ESP;
-	// iii. Francês = FRS;
-	// iv. Português  = POT.
-}
-
 //Verificar escopo adequado
 vector<Impresso*> qtdLivrosEmLivrarias(vector<Livro*> &livros, int qtd)
 { 
@@ -331,7 +334,6 @@ vector<Impresso*> qtdLivrosEmLivrarias(vector<Livro*> &livros, int qtd)
 	for (int i = 0; i < livros.size(); ++i)
 	{
 		Livro *livro = livros[i];
-
 		/**
 		 * Variavel auxiliar para identificar instancia do objeto
 		 */
