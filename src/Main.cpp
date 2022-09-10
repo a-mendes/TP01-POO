@@ -51,32 +51,22 @@ int main(int argc, char const *argv[])
 
 		switch(op)
 		{
-			case 'a': case 'A':
+			case 'a': case 'A': //Imprime todos os livros 
 			{
 				for (int i = 0; i < livros.size(); ++i)
 				{
-<<<<<<< HEAD
-					cout << *livros[i];
-					cout<<"\n";
-
-				}
-			
-=======
 					cout << *livros[i] << "\n";
 
 				}
->>>>>>> 2707d28f0f008792bbb420df7b72b591500a716c
 			} break;
 
-			case 'b': case 'B': 
+			case 'b': case 'B': //Imprime livros de determinado idioma 
 			{
 				cout << "Informe o Idioma: \n";
 				string idioma;
-				cin>> idioma;
+				cin>> idioma; //Capta o idioma requerido 
 
-				
-				vector<Livro*>recebelivros = livrosByID(idioma,livros);
-				//vector<Livro*>recebelivros = livros;
+				vector<Livro*>recebelivros = livrosByID(idioma,livros); // Chama a função
 				
 				cout << "O idoma " << idioma << " " << "esta presente nos seguintes livros:"  << endl; 
 				for (int i = 0; i < recebelivros.size(); i++)
@@ -87,22 +77,21 @@ int main(int argc, char const *argv[])
 				
 			} break;
 
-			case 'c': case 'C':
+			case 'c': case 'C'://Imprime Livros eletronicos de determinado formato em ordem Crescente com base no ano de Publicação 
 			{
 				cout << "Informe o formato: \n";
 				string formato;
-				cin>> formato;
-
+				cin>> formato; // Capta formato
 				
-				vector<Eletronico*>recebelivros = livrosEByFormato(formato,livros);
-				//vector<Livro*>recebelivros = livros;
+				vector<Eletronico*>recebelivros = livrosEByFormato(formato,livros);//Chama função 
 				
 				cout << "O formato " << formato << " " << "esta presente nos seguintes livros:"  << endl; 
 				for (int i = 0; i < recebelivros.size(); i++)
 				{
 					cout <<*recebelivros[i];
+					cout<<"\n";
 				}
-				return 0;
+				
 			} break;
 
 			case 'd': case 'D': 
@@ -164,11 +153,7 @@ int main(int argc, char const *argv[])
 
 				for (int i = 0; i < livrosTitulo.size(); ++i)
 				{
-<<<<<<< HEAD
 					cout<<*livrosTitulo[i];
-=======
-					cout << *livrosTitulo[i] << "\n";
->>>>>>> 2707d28f0f008792bbb420df7b72b591500a716c
 				}
 
 			} break;
@@ -420,13 +405,13 @@ vector <string> printKeywords(vector<Livro*> &livros){
 	return keywords;
 }
 
+//Retrona vector com Livros de idioma requerido 
 vector<Livro*> livrosByID(string idioma,vector<Livro*>&livros){
 	vector<Livro*> livrosIdioma;
-	
+	//Separa Livros com determinado idioma dos demais 
 	for (int i = 0; i < livros.size(); ++i)
 	{
 		Livro *livro = livros[i];
-		//cout<<"\n"<<*livro;
 		if (livro->getIdiomaOriginal() == idioma)
 			livrosIdioma.push_back(livro);
 		
@@ -435,9 +420,11 @@ vector<Livro*> livrosByID(string idioma,vector<Livro*>&livros){
 	return livrosIdioma;
 }
 
+//Função que retorna vector de Livros eletronicos com um determinado formato 
 vector<Eletronico*> livrosEByFormato(string formato,vector<Livro*>&livros){
 	vector<Eletronico*> livrosEletronicos;
-	
+	Eletronico *aux1;
+//Separa os livros eletronicos dos demais 
 	for (int i = 0; i < livros.size(); ++i)
 	{
 		Livro *livro = livros[i];
@@ -445,11 +432,25 @@ vector<Eletronico*> livrosEByFormato(string formato,vector<Livro*>&livros){
 		
 		if(typeid(*livro).name() == typeid(*aux).name()){
 			Eletronico *eletronico = dynamic_cast<Eletronico *>(livro);
+//Separa os livros eletronicos com o formato desejado 
 			if (eletronico->getFormatoArquivo() == formato)
 				livrosEletronicos.push_back(eletronico);
 		}
 	}
-	//sort(livrosEletronicos.begin(), livrosEletronicos.end(), [] (Livro &x, Livro &y) { return x.getAnoPublicacao() < y.getAnoPublicacao(); });
+//Ordena Livros Eletronicos com base no ano de publicação
+	for (int  i = 0; i < livrosEletronicos.size(); i++)
+	{
+		for (int  j = 0; j < livrosEletronicos.size(); j++)
+		{
+			if (livrosEletronicos[i]->getAnoPublicacao()<livrosEletronicos[j]->getAnoPublicacao())
+			{
+				aux1 = livrosEletronicos[i];
+				livrosEletronicos[i] = livrosEletronicos[j];
+				livrosEletronicos[j]=aux1;
+			}
+			
+		}
+	}
 	return livrosEletronicos;
 }
 
