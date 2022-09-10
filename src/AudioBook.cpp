@@ -22,9 +22,11 @@ void AudioBook::setFormatoArquivo(string formatoArquivo){
 
 ostream& operator<<(ostream& os, const AudioBook& audioBook)
 {
+    Livro livro = audioBook;
+    os << livro;
 
     os.setf(ios::fixed);
-    os << setprecision(2) << audioBook.duracao << "\n";
+    os << setprecision(2) << audioBook.duracao;
 
 	return os;
 }
