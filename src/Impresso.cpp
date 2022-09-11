@@ -16,12 +16,13 @@ void Impresso::setColunas(int colunas){
     this->colunas = colunas;
 }
 
-ostream& operator<<(ostream& os, const Impresso& impresso)
+ostream& operator<<(ostream& os, const Impresso& impresso) //Sobrecarga da classe impresso 
 {
 
     Livro livro = impresso;
-    os << livro;
+    os << livro;// Impreme dados gerais do livro 
 
+	//Imprime especificassões 
 	if(impresso.livrarias.size() > 0)
 		os << impresso.livrarias[0];
 	else

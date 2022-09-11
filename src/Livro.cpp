@@ -68,17 +68,18 @@ void Livro::setKeywords(vector<string> keywords)
 	this->keywords = keywords;
 }
 
-ostream& operator<<(ostream& os, const Livro& livro)
+ostream& operator<<(ostream& os, const Livro& livro) //Sobrecarga do Operador 
 {
-	string aux = "";
-
+	string aux = ""; // Variavel auxiliar 
+	//Impre titulo
 	aux = livro.titulo;
-	aux.resize(30, ' ');
-	os << aux;
+	aux.resize(30, ' '); // Garante tamanho maximo e justifica à esquerda 
+	os << aux; 
 
-	os << "|";
+	os << "|"; //Imprime separador 
 
 	aux = "";
+	//Imprime escritores 
 	if(livro.escritores[0].size() < 30){
 		aux.resize(30 - livro.escritores[0].size(), ' ');
 		os <<aux + livro.escritores[0];	
@@ -90,7 +91,7 @@ ostream& operator<<(ostream& os, const Livro& livro)
 	}
 
 	os << "|";
-
+	//Imprime idioma original 
 	aux = "";
 	aux = livro.idiomaOriginal;
 	aux.resize(10, ' ');
@@ -98,12 +99,15 @@ ostream& operator<<(ostream& os, const Livro& livro)
 
 	os << "|";
 
+	//Imprime quantidade de capitulos 
 	aux = "";
 	if(livro.capitulos.size()<=10)
-	 	os <<"00"<< livro.capitulos.size();
+	 	os <<"00"<< livro.capitulos.size();//Adiciona dois zeros para preencher o campo caso a quantidade
+										  //não possua as casa de dezenas e centenas 
 	
 	else if(livro.capitulos.size()>10 &&  livro.capitulos.size()<100)
-		os <<"0"<< livro.capitulos.size();
+		os <<"0"<< livro.capitulos.size();//Adiciona um zero para preencher o campo caso a quantidade
+										  //não possua  a casa das  centenas 
 	
 	else
 	 	os << livro.capitulos.size();
@@ -111,6 +115,7 @@ ostream& operator<<(ostream& os, const Livro& livro)
 	os << "|";
 
 	aux = "";
+	//Imprime keywords 
 	 if(livro.keywords.size()<10)
 	 	os <<"00"<<livro.keywords.size(); 
 	 else

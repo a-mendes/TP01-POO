@@ -15,11 +15,12 @@ void Eletronico::setFormatoArquivo(string formatoArquivo){
     this->formatoArquivo = formatoArquivo;
 }
 
-ostream& operator<<(ostream& os, const Eletronico& eletronico)
+ostream& operator<<(ostream& os, const Eletronico& eletronico) //Sobrecarga do operador na classe eletronico
 {
     Livro livro = eletronico;
-    os << livro;
+    os << livro; // Imprime dados do livro
 
+//Imprime especificassões 
 	os << eletronico.formatoArquivo;
 
 	return os;

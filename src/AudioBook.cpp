@@ -23,8 +23,8 @@ void AudioBook::setFormatoArquivo(string formatoArquivo){
 ostream& operator<<(ostream& os, const AudioBook& audioBook)
 {
     Livro livro = audioBook;
-    os << livro;
-
+    os << livro;// Impreme dados gerais do livro 
+//Imprime especificassões 
     os.setf(ios::fixed);
     os << setprecision(2) << audioBook.duracao;
 
