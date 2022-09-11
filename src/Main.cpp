@@ -55,17 +55,10 @@ int main(int argc, char const *argv[])
 			{
 				for (int i = 0; i < livros.size(); ++i)
 				{
-<<<<<<< HEAD
 					cout << *livros[i];
 					cout<<"\n";
-
 				}
-			
-=======
-					cout << *livros[i] << "\n";
 
-				}
->>>>>>> 2707d28f0f008792bbb420df7b72b591500a716c
 			} break;
 
 			case 'b': case 'B': 
@@ -164,11 +157,8 @@ int main(int argc, char const *argv[])
 
 				for (int i = 0; i < livrosTitulo.size(); ++i)
 				{
-<<<<<<< HEAD
 					cout<<*livrosTitulo[i];
-=======
 					cout << *livrosTitulo[i] << "\n";
->>>>>>> 2707d28f0f008792bbb420df7b72b591500a716c
 				}
 
 			} break;
@@ -449,7 +439,8 @@ vector<Eletronico*> livrosEByFormato(string formato,vector<Livro*>&livros){
 				livrosEletronicos.push_back(eletronico);
 		}
 	}
-	//sort(livrosEletronicos.begin(), livrosEletronicos.end(), [] (Livro &x, Livro &y) { return x.getAnoPublicacao() < y.getAnoPublicacao(); });
+
+
 	return livrosEletronicos;
 }
 

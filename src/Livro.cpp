@@ -116,7 +116,7 @@ ostream& operator<<(ostream& os, const Livro& livro)
 	 else
 	 	os << livro.keywords.size();
 
-	//os << "|\n";
+	os << "|";
 
 	return os;
 }
