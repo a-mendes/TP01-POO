@@ -9,6 +9,9 @@
 
 char menu();
 
+//g++ -o ColecaoLivros.exe src/*.cpp -Wall
+//https://stackoverflow.com/questions/3660901/a-warning-comparison-between-signed-and-unsigned-integer-expressions
+
 bool hasAudioBook(vector<Livro*> &livros, string escritor);
 vector<Livro*> livrosByTitulo(vector<Livro*> &livros, string titulo);
 vector<Impresso*> qtdLivrosEmLivrarias(vector<Livro*> &livros, int qtd);
@@ -17,10 +20,12 @@ vector <string> printKeywords(vector<Livro*> &livros);
 vector<Livro*> livrosByID(string idioma,vector<Livro*>&livros);
 
 vector<Eletronico*> livrosEByFormato(string idioma,vector<Livro*>&livros);
+bool comparePtrToEletronico(Eletronico* a, Eletronico* b);
 
 void mostrarOuSalvarColecaoLivro(vector<Livro*> &livros, int arquivoConsole);
 int quantidadeKeywordColecaoLivro(vector<Livro*> &livros, string keyword);
 multimap<string, Livro> mapeamentoColecaoLivro(vector<Livro*> &livros);
+
 
 int main(int argc, char const *argv[])
 {                                         
@@ -31,9 +36,8 @@ int main(int argc, char const *argv[])
 	cout << "   |_| |_|    \\___/|_|         |_|    \\___/ \\___/ " << endl;
 	cout << endl;
 	cout << "Ana Laura Siqueira Mendes - 20.2.4091" << endl;
-	//Acertem os nomes e matricula de vcs amiguinhos
 	cout << "Guilherme Salim Monteiro de Castro Paes - 21.1.4109" << endl;
-	cout << "Mateus" << endl;
+	cout << "Mateus Filipe Moreira Silva - 21.1.4156" << endl;
 	cout << "Romulo Junio Vieira Rocha - 21.1.4022" << endl;
 	cout << endl;
 	
@@ -53,7 +57,7 @@ int main(int argc, char const *argv[])
 		{
 			case 'a': case 'A': //Imprime todos os livros 
 			{
-				for (int i = 0; i < livros.size(); ++i)
+				for (int i = 0; i < (int)livros.size(); ++i)
 				{
 					cout << *livros[i];
 					cout<<"\n";
@@ -71,7 +75,7 @@ int main(int argc, char const *argv[])
 				vector<Livro*>recebelivros = livrosByID(idioma,livros); // Chama a função
 				
 				cout << "O idoma " << idioma << " " << "esta presente nos seguintes livros:"  << endl; 
-				for (int i = 0; i < recebelivros.size(); i++)
+				for (int i = 0; i < (int)recebelivros.size(); i++)
 				{
 					cout <<*recebelivros[i];
 					cout<<"\n";
@@ -88,7 +92,7 @@ int main(int argc, char const *argv[])
 				vector<Eletronico*>recebelivros = livrosEByFormato(formato,livros);//Chama função 
 				
 				cout << "O formato " << formato << " " << "esta presente nos seguintes livros:"  << endl; 
-				for (int i = 0; i < recebelivros.size(); i++)
+				for (int i = 0; i < (int)recebelivros.size(); i++)
 				{
 					cout <<*recebelivros[i];
 					cout<<"\n";
@@ -105,14 +109,14 @@ int main(int argc, char const *argv[])
 
 				vector<Impresso*> livrosEmLivrarias = qtdLivrosEmLivrarias(livros, qtdLivros);
 
-				if (livrosEmLivrarias.size() == 0)
+				if ((int)livrosEmLivrarias.size() == 0)
 				{
 					cout << "Nenhum livro foi encontrado" << endl;
 					system("pause");
 					break;
 				}
 
-				for (int i = 0; i < livrosEmLivrarias.size(); ++i)
+				for (int i = 0; i < (int)livrosEmLivrarias.size(); ++i)
 				{
 					cout << *livrosEmLivrarias[i] << "\n";
 				}
@@ -149,14 +153,14 @@ int main(int argc, char const *argv[])
 
 				vector<Livro*> livrosTitulo = livrosByTitulo(livros, titulo);
 
-				if (livrosTitulo.size() == 0)
+				if ((int)livrosTitulo.size() == 0)
 				{
 					cout << "Nenhum livro foi encontrado" << endl;
 					system("pause");
 					break;
 				}
 
-				for (int i = 0; i < livrosTitulo.size(); ++i)
+				for (int i = 0; i < (int)livrosTitulo.size(); ++i)
 				{
 					cout<<*livrosTitulo[i];
 					cout << *livrosTitulo[i] << "\n";
@@ -167,7 +171,7 @@ int main(int argc, char const *argv[])
 			case 'g': case 'G':
 			{
                 vector<string> keywords = printKeywords(livros);
-				for(int i = 0; i < keywords.size();i++){
+				for(int i = 0; i < (int)keywords.size();i++){
 					cout << keywords[i] << "; ";
 				}
 				cout << endl;
@@ -257,7 +261,7 @@ char menu()
 multimap<string, Livro> mapeamentoColecaoLivro(vector<Livro*> &livros){
 	multimap<string, Livro> mapaLivro;
 	
-	for (int i = 0; i < livros.size(); i++){
+	for (int i = 0; i < (int)livros.size(); i++){
 		if(livros[i]->getIdiomaOriginal() == "Ingles")
 			mapaLivro.insert(pair<string, Livro>("ING", *livros[i]));
 		else if(livros[i]->getIdiomaOriginal() == "Espanhol")
@@ -277,7 +281,7 @@ void mostrarOuSalvarColecaoLivro(vector<Livro*> &livros, int arquivoConsole){
 	if(arquivoConsole == 2)
 			arquivo.open("data/saida.txt", ios::out);
 
-	for (int i = 0; i < livros.size(); i++){
+	for (int i = 0; i < (int)livros.size(); i++){
 		if(typeid(*livros[i]).name() == typeid(Impresso).name()){
 			Impresso *livroImpresso = dynamic_cast<Impresso*>(livros[i]);
 			if(arquivoConsole == 1)
@@ -308,7 +312,7 @@ void mostrarOuSalvarColecaoLivro(vector<Livro*> &livros, int arquivoConsole){
 int quantidadeKeywordColecaoLivro(vector<Livro*> &livros, string keyword){
 	int countVar = 0;
 	vector<string> vetorKeywords;
-	int tam = livros.size();
+	int tam = (int)livros.size();
 	for (int i = 0; i < tam; i++){
 		vetorKeywords = livros[i]->getKeywords(); 
 		if(count(vetorKeywords.begin(), vetorKeywords.end(), keyword) > 0)
@@ -324,7 +328,7 @@ vector<Impresso*> qtdLivrosEmLivrarias(vector<Livro*> &livros, int qtd)
 { 
 	//Quantidade de livros em livrarias ou a quantidade de livrarias que possuem o livro?
 	vector<Impresso*> livrosEmLivrarias;
-	int tam = livros.size();
+	int tam = (int)livros.size();
 	for (int i = 0; i < tam; ++i)
 	{
 		Livro *livro = livros[i];
@@ -341,7 +345,7 @@ vector<Impresso*> qtdLivrosEmLivrarias(vector<Livro*> &livros, int qtd)
 			Impresso *livroImpresso = dynamic_cast<Impresso *>(livro);
 			vector<string> livrarias = livroImpresso->getLivrarias();
 
-			if(livrarias.size() >= qtd)
+			if((int)livrarias.size() >= qtd)
 				livrosEmLivrarias.push_back(livroImpresso);
 		}
 	}
@@ -352,7 +356,7 @@ vector<Impresso*> qtdLivrosEmLivrarias(vector<Livro*> &livros, int qtd)
 //Verificar escopo adequado
 bool hasAudioBook(vector<Livro*> &livros, string escritor)
 {
-	int tam = livros.size();
+	int tam = (int)livros.size();
 	for (int i = 0; i < tam; ++i)
 	{
 		Livro *livro = livros[i];
@@ -371,7 +375,7 @@ bool hasAudioBook(vector<Livro*> &livros, string escritor)
 			 * Compara todos os escritores do AudioBook com o escritor buscado
 			 */ 
 			vector<string> escritores = livro->getEscritores();
-			for (int i = 0; i < escritores.size(); ++i)
+			for (int i = 0; i < (int)escritores.size(); ++i)
 			{
 				if(escritores[i] == escritor)
 					return true;
@@ -385,7 +389,7 @@ bool hasAudioBook(vector<Livro*> &livros, string escritor)
 vector<Livro*> livrosByTitulo(vector<Livro*> &livros, string titulo)
 {
 	vector<Livro*> livrosTitulo;
-	int tam = livros.size();
+	int tam = (int)livros.size();
 	for (int i = 0; i < tam; ++i)
 	{
 		Livro *livro = livros[i];
@@ -404,7 +408,7 @@ vector <string> printKeywords(vector<Livro*> &livros){
 	vector <string> :: iterator it;
 	int k = 0;
 	for(int i = 0; i < QTD_LIVROS; i++){
-		for(int j = 0; j < livros[i]->getKeywords().size(); j++){
+		for(int j = 0; j < (int)livros[i]->getKeywords().size(); j++){
 			if(count(keywords.begin(), keywords.end(), livros[i]->getKeywords()[j]) == 0){
 				it = keywords.begin() + k;
 				keywords.insert(it, livros[i]->getKeywords()[j]);
@@ -418,7 +422,7 @@ vector <string> printKeywords(vector<Livro*> &livros){
 //Retrona vector com Livros de idioma requerido 
 vector<Livro*> livrosByID(string idioma,vector<Livro*>&livros){
 	vector<Livro*> livrosIdioma;
-	int tam = livros.size();
+	int tam = (int)livros.size();
 	//Separa Livros com determinado idioma dos demais 
 	for (int i = 0; i < tam; ++i)
 	{
@@ -435,7 +439,7 @@ vector<Livro*> livrosByID(string idioma,vector<Livro*>&livros){
 vector<Eletronico*> livrosEByFormato(string formato,vector<Livro*>&livros){
 	vector<Eletronico*> livrosEletronicos;
 	Eletronico *aux1;
-	int tam = livros.size();
+	int tam = (int)livros.size();
 //Separa os livros eletronicos dos demais 
 	for (int i = 0; i < tam; ++i)
 	{
@@ -451,7 +455,7 @@ vector<Eletronico*> livrosEByFormato(string formato,vector<Livro*>&livros){
 	}
 
 
-	int tam2 = livrosEletronicos.size();
+	int tam2 = (int)livrosEletronicos.size();
 //Ordena Livros Eletronicos com base no ano de publicação
 	for (int  i = 0; i < tam2; i++)
 	{
@@ -466,8 +470,19 @@ vector<Eletronico*> livrosEByFormato(string formato,vector<Livro*>&livros){
 			
 		}
 	}
+
+
+	//std::sort(livrosEletronicos.begin(), livrosEletronicos.end(), comparePtrToEletronico);
+
 	return livrosEletronicos;
 }
+
+bool comparePtrToEletronico(Eletronico* a, Eletronico* b) {
+	Livro livro1 = *a;
+	Livro livro2 = *b; 
+	return (livro1.getAnoPublicacao() < livro2.getAnoPublicacao()); 
+}
+
 
 
 
