@@ -157,20 +157,31 @@ vector<Livro*> livrosByTitulo(vector<Livro*> &livros, string titulo)
 //------------------------ G
 vector <string> printKeywords(vector<Livro*> &livros){
 	vector<string> keywords;
-	vector <string> :: iterator it;
-	int k = 0;
+	//vector <string> :: iterator it;
+	//int k = 0;
 	for(int i = 0; i < QTD_LIVROS; i++){
 		for(int j = 0; j < (int)livros[i]->getKeywords().size(); j++){
 			if(count(keywords.begin(), keywords.end(), livros[i]->getKeywords()[j]) == 0){
-				it = keywords.begin() + k;
-				keywords.insert(it, livros[i]->getKeywords()[j]);
-				k+=1;
+				//it = keywords.begin() + k;
+				keywords.push_back(livros[i]->getKeywords()[j]);
+				//k+=1;
 			}
 		}
 	}
 	return keywords;
 }
 
+vector<vector<Livro*>::iterator> retornaIterador (string titulo, vector<Livro*> &livros){
+	vector<vector<Livro*>::iterator> retorno;
+	for (auto itr = livros.begin(); itr != livros.end(); itr++) {
+		// cout << "Itr" << (*itr)->getTitulo() << endl;
+		// cout << "Titulo:"<< titulo << endl;
+		if ((*itr)->getTitulo() == titulo){
+			retorno.push_back(itr);
+		}
+	}
+	return retorno;
+}
 //------------------------ H
 
 //------------------------ I

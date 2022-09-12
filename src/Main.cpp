@@ -16,7 +16,7 @@ char menu();
 
 
 int main(int argc, char const *argv[])
-{                                         
+{                                        
 	cout << "  _____ ____   ___  _           ____   ___   ___  " << endl;
 	cout << " |_   _|  _ \\ / _ \\/ |         |  _ \\ / _ \\ / _ \\ " << endl;
 	cout << "   | | | |_) | | | | |  _____  | |_) | | | | | | |" << endl;
@@ -172,7 +172,25 @@ int main(int argc, char const *argv[])
 			} break;
 
 			case 'i': case 'I':
-			{
+			{	
+				string titulo;
+				cout << "Digite o título do livro:" << endl;
+				getline(cin >> ws, titulo);
+				vector<vector<Livro*>::iterator> itrs = retornaIterador(titulo, livros);
+				for(int i = 0; i < itrs.size(); i++){
+					Impresso *livroImpresso = dynamic_cast<Impresso*>(*itrs[i]);
+					if(livroImpresso != nullptr){
+						cout << *livroImpresso << endl; 
+					}
+					Eletronico *livroEletronico = dynamic_cast<Eletronico*>(*itrs[i]);
+					if(livroEletronico != nullptr){
+						cout << *livroEletronico << endl; 
+					}
+					AudioBook *livroAudioBook = dynamic_cast<AudioBook*>(*itrs[i]);
+					if(livroAudioBook != nullptr){
+						cout << *livroAudioBook << endl; 
+					}
+				}
 				system("pause");
 			} break;
 
