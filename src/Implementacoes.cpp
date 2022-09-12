@@ -166,7 +166,23 @@ vector <string> printKeywords(vector<Livro*> &livros){
 	}
 	return keywords;
 }
+//------------------------ H
+vector <string> filtraPorCapitulo(vector<Livro*> &livros, int capitulos){
+	vector<string> livrosFiltrados;
+	vector<Livro*> aux = livros;
+	sort(aux.begin(), aux.end(), comparaEscritores);
+	for(int i = 0; i < QTD_LIVROS; i++){
+		if(aux[i]->getCapitulos().size() <= capitulos){
+			livrosFiltrados.push_back(aux[i]->getTitulo());
+		}
+	}
+	return livrosFiltrados;
+}
+bool comparaEscritores(Livro* a, Livro* b){
+	return (a->getEscritores()[0] < b->getEscritores()[0]);
+}
 
+//------------------------ I
 vector<vector<Livro*>::iterator> retornaIterador (string titulo, vector<Livro*> &livros){
 	vector<vector<Livro*>::iterator> retorno;
 	for (auto itr = livros.begin(); itr != livros.end(); itr++) {
@@ -176,9 +192,6 @@ vector<vector<Livro*>::iterator> retornaIterador (string titulo, vector<Livro*> 
 	}
 	return retorno;
 }
-//------------------------ H
-
-//------------------------ I
 
 //------------------------ J
 void mostrarOuSalvarColecaoLivro(vector<Livro*> &livros, int arquivoConsole){
