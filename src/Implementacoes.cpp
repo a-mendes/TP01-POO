@@ -7,7 +7,7 @@
 #include <map>
 
 //------------------------ A
-//Sobre carga nas classes print no main
+//Sobrecarga nas classes e print no main
 
 //------------------------ B
 vector<Livro*> livrosByID(string idioma,vector<Livro*>&livros){
@@ -181,9 +181,11 @@ void mostrarOuSalvarColecaoLivro(vector<Livro*> &livros, int arquivoConsole){
 	if(arquivoConsole == 2)
 			arquivo.open("data/saida.txt", ios::out);
 
+	//https://stackoverflow.com/questions/70671667/why-my-overloaded-operator-is-not-working-for-derived-class
 	for (int i = 0; i < (int)livros.size(); i++){
 		if(typeid(*livros[i]).name() == typeid(Impresso).name()){
 			Impresso *livroImpresso = dynamic_cast<Impresso*>(livros[i]);
+
 			if(arquivoConsole == 1)
 				cout << *livroImpresso << "\n";
 			
