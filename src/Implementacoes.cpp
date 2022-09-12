@@ -46,23 +46,9 @@ vector<Eletronico*> livrosEByFormato(string formato,vector<Livro*>&livros){
 
 
 	int tam2 = (int)livrosEletronicos.size();
-//Ordena Livros Eletronicos com base no ano de publicação
-	for (int  i = 0; i < tam2; i++)
-	{
-		for (int  j = 0; j < tam2; j++)
-		{
-			if (livrosEletronicos[i]->getAnoPublicacao()<livrosEletronicos[j]->getAnoPublicacao())
-			{
-				aux1 = livrosEletronicos[i];
-				livrosEletronicos[i] = livrosEletronicos[j];
-				livrosEletronicos[j]=aux1;
-			}
-			
-		}
-	}
+	//Ordena Livros Eletronicos com base no ano de publicação
 
-
-	//std::sort(livrosEletronicos.begin(), livrosEletronicos.end(), comparePtrToEletronico);
+	sort(livrosEletronicos.begin(), livrosEletronicos.end(), comparePtrToEletronico);
 
 	return livrosEletronicos;
 }
