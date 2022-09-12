@@ -118,7 +118,7 @@ void Livro ::saida( ostream& os) const {
 	aux = "";
 	//Imprime keywords 
 	 if(keywords.size()<10)
-	 	os <<"00"<<keywords.size(); 
+	 	os <<"0"<<keywords.size(); 
 	 else
 	 	os << keywords.size();
 
