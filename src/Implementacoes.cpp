@@ -30,7 +30,7 @@ vector<Eletronico*> livrosEByFormato(string formato,vector<Livro*>&livros){
 	vector<Eletronico*> livrosEletronicos;
 	Eletronico *aux1;
 	int tam = (int)livros.size();
-//Separa os livros eletronicos dos demais 
+	//Separa os livros eletronicos dos demais 
 	for (int i = 0; i < tam; ++i)
 	{
 		Livro *livro = livros[i];
@@ -38,7 +38,7 @@ vector<Eletronico*> livrosEByFormato(string formato,vector<Livro*>&livros){
 		
 		if(typeid(*livro).name() == typeid(*aux).name()){
 			Eletronico *eletronico = dynamic_cast<Eletronico *>(livro);
-//Separa os livros eletronicos com o formato desejado 
+			//Separa os livros eletronicos com o formato desejado 
 			if (eletronico->getFormatoArquivo() == formato)
 				livrosEletronicos.push_back(eletronico);
 		}
@@ -152,6 +152,7 @@ vector <string> printKeywords(vector<Livro*> &livros){
 	}
 	return keywords;
 }
+
 //------------------------ H
 vector <string> filtraPorCapitulo(vector<Livro*> &livros, int capitulos){
 	vector<string> livrosFiltrados;
