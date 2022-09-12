@@ -62,7 +62,7 @@ vector<Eletronico*> livrosEByFormato(string formato,vector<Livro*>&livros){
 	}
 
 
-	//std::sort(livrosEletronicos.begin(), livrosEletronicos.end(), comparePtrToEletronico);
+	std::sort(livrosEletronicos.begin(), livrosEletronicos.end(), comparePtrToEletronico);
 
 	return livrosEletronicos;
 }

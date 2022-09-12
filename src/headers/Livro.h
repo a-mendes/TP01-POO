@@ -43,6 +43,8 @@ class Livro
 		vector<string> getKeywords();
 		void setKeywords(vector<string> keywords);
 
+		void saida(ostream& os) const;
+
 		friend ostream& operator<<(ostream&, const Livro&);
 		
 };

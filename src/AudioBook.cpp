@@ -20,13 +20,18 @@ void AudioBook::setFormatoArquivo(string formatoArquivo){
     this->formatoArquivo = formatoArquivo;
 }	
 
-ostream& operator<<(ostream& os, const AudioBook& audioBook)
-{
-    Livro livro = audioBook;
-    os << livro;// Impreme dados gerais do livro 
+void AudioBook:: saida(ostream& os)const{
+     Livro::saida(os);
+    
 //Imprime especificassões 
     os.setf(ios::fixed);
-    os << setprecision(2) << audioBook.duracao;
+    os << setprecision(2) << duracao<<"\n";
+}
 
+
+ostream& operator<<(ostream& os, const AudioBook& audioBook)
+{
+   
+    audioBook.saida(os);
 	return os;
 }

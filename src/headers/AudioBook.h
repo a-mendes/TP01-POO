@@ -20,7 +20,7 @@ class AudioBook : public Livro {
 		
 		string getFormatoArquivo();
 		void setFormatoArquivo(string formatoArquivo);	
-
+		void saida(ostream& os)const;
 		friend ostream& operator<<(ostream&, const AudioBook&);
 };
 
