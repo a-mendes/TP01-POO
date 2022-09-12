@@ -13,6 +13,7 @@
 #include "AudioBook.h"
 #include "Eletronico.h"
 #include "Impresso.h"
+#include "Implementacoes.h"
 
 #define QTD_LIVROS 16
 

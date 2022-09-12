@@ -1,4 +1,3 @@
-#include "headers/Utilitarios.h"
 #include "headers/Implementacoes.h"
 
 #include<vector>
@@ -52,7 +51,6 @@ vector<Eletronico*> livrosEByFormato(string formato,vector<Livro*>&livros){
 
 	return livrosEletronicos;
 }
-
 bool comparePtrToEletronico(Eletronico* a, Eletronico* b) {
 	Livro livro1 = *a;
 	Livro livro2 = *b; 
