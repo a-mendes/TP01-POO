@@ -1,4 +1,3 @@
-#include "headers/Utilitarios.h"
 #include "headers/Implementacoes.h"
 
 #include<vector>
@@ -30,7 +29,7 @@ vector<Eletronico*> livrosEByFormato(string formato,vector<Livro*>&livros){
 	vector<Eletronico*> livrosEletronicos;
 	Eletronico *aux1;
 	int tam = (int)livros.size();
-//Separa os livros eletronicos dos demais 
+	//Separa os livros eletronicos dos demais 
 	for (int i = 0; i < tam; ++i)
 	{
 		Livro *livro = livros[i];
@@ -38,7 +37,7 @@ vector<Eletronico*> livrosEByFormato(string formato,vector<Livro*>&livros){
 		
 		if(typeid(*livro).name() == typeid(*aux).name()){
 			Eletronico *eletronico = dynamic_cast<Eletronico *>(livro);
-//Separa os livros eletronicos com o formato desejado 
+			//Separa os livros eletronicos com o formato desejado 
 			if (eletronico->getFormatoArquivo() == formato)
 				livrosEletronicos.push_back(eletronico);
 		}
@@ -46,27 +45,13 @@ vector<Eletronico*> livrosEByFormato(string formato,vector<Livro*>&livros){
 
 
 	int tam2 = (int)livrosEletronicos.size();
-//Ordena Livros Eletronicos com base no ano de publicação
-	for (int  i = 0; i < tam2; i++)
-	{
-		for (int  j = 0; j < tam2; j++)
-		{
-			if (livrosEletronicos[i]->getAnoPublicacao()<livrosEletronicos[j]->getAnoPublicacao())
-			{
-				aux1 = livrosEletronicos[i];
-				livrosEletronicos[i] = livrosEletronicos[j];
-				livrosEletronicos[j]=aux1;
-			}
-			
-		}
-	}
+	//Ordena Livros Eletronicos com base no ano de publicação
 
 
 	std::sort(livrosEletronicos.begin(), livrosEletronicos.end(), comparePtrToEletronico);
 
 	return livrosEletronicos;
 }
-
 bool comparePtrToEletronico(Eletronico* a, Eletronico* b) {
 	Livro livro1 = *a;
 	Livro livro2 = *b; 
@@ -167,6 +152,23 @@ vector <string> printKeywords(vector<Livro*> &livros){
 	return keywords;
 }
 
+//------------------------ H
+vector <string> filtraPorCapitulo(vector<Livro*> &livros, int capitulos){
+	vector<string> livrosFiltrados;
+	vector<Livro*> aux = livros;
+	sort(aux.begin(), aux.end(), comparaEscritores);
+	for(int i = 0; i < QTD_LIVROS; i++){
+		if(aux[i]->getCapitulos().size() <= capitulos){
+			livrosFiltrados.push_back(aux[i]->getTitulo());
+		}
+	}
+	return livrosFiltrados;
+}
+bool comparaEscritores(Livro* a, Livro* b){
+	return (a->getEscritores()[0] < b->getEscritores()[0]);
+}
+
+//------------------------ I
 vector<vector<Livro*>::iterator> retornaIterador (string titulo, vector<Livro*> &livros){
 	vector<vector<Livro*>::iterator> retorno;
 	for (auto itr = livros.begin(); itr != livros.end(); itr++) {
@@ -176,9 +178,6 @@ vector<vector<Livro*>::iterator> retornaIterador (string titulo, vector<Livro*> 
 	}
 	return retorno;
 }
-//------------------------ H
-
-//------------------------ I
 
 //------------------------ J
 void mostrarOuSalvarColecaoLivro(vector<Livro*> &livros, int arquivoConsole){

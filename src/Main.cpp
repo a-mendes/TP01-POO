@@ -2,7 +2,6 @@
  * Demais imports sao feitos por "headers/Utilitarios.h"
  */
 #include "headers/Utilitarios.h"
-#include "headers/Implementacoes.h"
 
 #include<vector>
 #include <algorithm>
@@ -167,6 +166,13 @@ int main(int argc, char const *argv[])
 
 			case 'h': case 'H':
 			{
+				int capitulos;
+				cout << "Numero minimo de capitulos:"; cin >> capitulos;
+				vector<string> listaDeLivros = filtraPorCapitulo(livros, capitulos);
+				for(int i = 0; i < listaDeLivros.size(); i++){
+					cout << listaDeLivros[i] << "; ";
+				}
+				cout << endl;
 				system("pause");
 			} break;
 

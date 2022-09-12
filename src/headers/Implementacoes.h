@@ -16,8 +16,8 @@ vector<Eletronico*> livrosEByFormato(string formato,vector<Livro*>&livros); bool
 vector<Impresso*> qtdLivrosEmLivrarias(vector<Livro*> &livros, int qtd);
 bool hasAudioBook(vector<Livro*> &livros, string escritor);
 vector<Livro*> livrosByTitulo(vector<Livro*> &livros, string titulo);
+vector <string> filtraPorCapitulo(vector<Livro*> &livros, int capitulos); bool comparaEscritores(Livro* a, Livro* b);
 vector <string> printKeywords(vector<Livro*> &livros);
-//H
 vector<vector<Livro*>::iterator> retornaIterador (string titulo, vector<Livro*> &livros);
 void mostrarOuSalvarColecaoLivro(vector<Livro*> &livros, int arquivoConsole);
 int quantidadeKeywordColecaoLivro(vector<Livro*> &livros, string keyword);
