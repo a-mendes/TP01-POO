@@ -157,7 +157,7 @@ int main(int argc, char const *argv[])
 
 				for (int i = 0; i < livrosTitulo.size(); ++i)
 				{
-					cout<<*livrosTitulo[i];
+					cout<<*livrosTitulo[i]<<"\n";
 				}
 				system("pause");
 			} break;
