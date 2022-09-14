@@ -141,11 +141,11 @@ vector<Livro*> livrosByTitulo(vector<Livro*> &livros, string titulo)
 
 //------------------------ G
 vector <string> printKeywords(vector<Livro*> &livros){
-	vector<string> keywords;
+	vector<string> keywords; // vector auxiliar que ira armazenar as keywords sem repeticao
 	for(int i = 0; i < QTD_LIVROS; i++){
-		for(int j = 0; j < (int)livros[i]->getKeywords().size(); j++){
-			if(count(keywords.begin(), keywords.end(), livros[i]->getKeywords()[j]) == 0){
-				keywords.push_back(livros[i]->getKeywords()[j]);
+		for(int j = 0; j < (int)livros[i]->getKeywords().size(); j++){// percorre todas as keywords de cada livro
+			if(count(keywords.begin(), keywords.end(), livros[i]->getKeywords()[j]) == 0){// verifica se a keyword analisada ja se encontra no vetor
+				keywords.push_back(livros[i]->getKeywords()[j]);// add a nova keyword ao vetor
 			}
 		}
 	}
@@ -154,15 +154,16 @@ vector <string> printKeywords(vector<Livro*> &livros){
 
 //------------------------ H
 vector <string> filtraPorCapitulo(vector<Livro*> &livros, int capitulos){
-	vector<string> livrosFiltrados;
-	vector<Livro*> aux = livros;
-	sort(aux.begin(), aux.end(), comparaEscritores);
+	vector<string> livrosFiltrados;// vetor de titulos de livros filtrados por quantidade de capitulos
+	vector<Livro*> aux = livros;// vetor auxiliar que sera ordenado
+	sort(aux.begin(), aux.end(), comparaEscritores);// ordena o vetor auxiliar em ordem do primeiro escritor
 	for(int i = 0; i < QTD_LIVROS; i++){
+		// a cada livro do vetor de livros, verifica se a quantidade de capitulos é a quantidade buscada
 		if(aux[i]->getCapitulos().size() <= capitulos){
-			livrosFiltrados.push_back(aux[i]->getTitulo());
+			livrosFiltrados.push_back(aux[i]->getTitulo());// se for, add o livro ao vetor de livros filtrados por capitulo
 		}
 	}
-	return livrosFiltrados;
+	return livrosFiltrados;//retorna o vetor de livros filtrados, ja ordenado em relacao aos escritores
 }
 bool comparaEscritores(Livro* a, Livro* b){
 	return (a->getEscritores()[0] < b->getEscritores()[0]);
@@ -170,13 +171,13 @@ bool comparaEscritores(Livro* a, Livro* b){
 
 //------------------------ I
 vector<vector<Livro*>::iterator> retornaIterador (string titulo, vector<Livro*> &livros){
-	vector<vector<Livro*>::iterator> retorno;
+	vector<vector<Livro*>::iterator> retorno;//vetor de iteradores
 	for (auto itr = livros.begin(); itr != livros.end(); itr++) {
-		if ((*itr)->getTitulo() == titulo){
-			retorno.push_back(itr);
+		if ((*itr)->getTitulo() == titulo){//percorre o vetor de livros buscando os titulos passados como entrada
+			retorno.push_back(itr);// add o iterador do vector de livros ao vector de iteradores
 		}
 	}
-	return retorno;
+	return retorno;//retorna o vector de iteradores para todos os titulos encontrados
 }
 
 //------------------------ J

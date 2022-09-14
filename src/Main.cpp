@@ -186,16 +186,20 @@ int main(int argc, char const *argv[])
 				cout << "Digite o título do livro:" << endl;
 				getline(cin >> ws, titulo);
 				vector<vector<Livro*>::iterator> itrs = retornaIterador(titulo, livros);
+				//percorre o vector de iteradores e faz um downcasting de cada iterador para cada sub-classe
 				for(int i = 0; i < itrs.size(); i++){
+					// downcasting de iterador para livro impresso
 					Impresso *livroImpresso = dynamic_cast<Impresso*>(*itrs[i]);
-					if(livroImpresso != nullptr){
+					if(livroImpresso != nullptr){// se o downcasting tiver sucesso. imprime o livro impresso
 						cout << *livroImpresso << endl; 
 					}
+					// downcasting de iterador para livro eletronico
 					Eletronico *livroEletronico = dynamic_cast<Eletronico*>(*itrs[i]);
-					if(livroEletronico != nullptr){
+					if(livroEletronico != nullptr){// se o downcasting tiver sucesso. imprime o livro eletronico
 						cout << *livroEletronico << endl; 
 					}
-					AudioBook *livroAudioBook = dynamic_cast<AudioBook*>(*itrs[i]);
+					// downcasting de iterador para audiobook
+					AudioBook *livroAudioBook = dynamic_cast<AudioBook*>(*itrs[i]);// se o downcasting tiver sucesso. imprime o audiobook
 					if(livroAudioBook != nullptr){
 						cout << *livroAudioBook << endl; 
 					}
