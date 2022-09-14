@@ -47,7 +47,7 @@ int main(int argc, char const *argv[])
 				for (int i = 0; i < (int)livros.size(); ++i)
 				{
 					cout << *livros[i];
-					cout<<"\n";
+					
 				}
 
 				system("pause");
@@ -65,7 +65,7 @@ int main(int argc, char const *argv[])
 				for (int i = 0; i < (int)recebelivros.size(); i++)
 				{
 					cout <<*recebelivros[i];
-					cout<<"\n";
+					
 				}
 				system("pause");
 			} break;
@@ -82,7 +82,7 @@ int main(int argc, char const *argv[])
 				for (int i = 0; i < (int)recebelivros.size(); i++)
 				{
 					cout <<*recebelivros[i];
-					cout<<"\n";
+					
 				}
 				system("pause");
 			} break;
