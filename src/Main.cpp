@@ -227,8 +227,25 @@ int main(int argc, char const *argv[])
 				multimap<string, Livro> mapaLivro;
 				mapaLivro = mapeamentoColecaoLivro(livros);		
 
-				for (auto &elm: mapaLivro)
-					cout << elm.second;
+				typedef std::multimap<string, Livro>::iterator MMAPIterator;
+				pair<MMAPIterator, MMAPIterator> result;
+
+				result = mapaLivro.equal_range("ING");
+				for (MMAPIterator it = result.first; it != result.second; it++)
+					cout << it->second;
+				
+				result = mapaLivro.equal_range("ESP");
+				for (MMAPIterator it = result.first; it != result.second; it++)
+					cout << it->second;
+
+				result = mapaLivro.equal_range("FRS");
+				for (MMAPIterator it = result.first; it != result.second; it++)
+					cout << it->second;
+
+				result = mapaLivro.equal_range("POT");
+				for (MMAPIterator it = result.first; it != result.second; it++)
+					cout << it->second;
+
 				system("pause");
 			} break;
 
