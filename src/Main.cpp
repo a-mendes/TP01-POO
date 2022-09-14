@@ -60,13 +60,14 @@ int main(int argc, char const *argv[])
 				cin>> idioma; //Capta o idioma requerido 
 
 				vector<Livro*>recebelivros = livrosByID(idioma,livros); // Chama a função
-				
+				if(recebelivros.size()==0){
+					cout<<"Nao existem livros com esse idioma"<<endl;
+					system("pause");
+					break;}
 				cout << "O idoma " << idioma << " " << "esta presente nos seguintes livros:"  << endl; 
 				for (int i = 0; i < (int)recebelivros.size(); i++)
-				{
-					cout <<*recebelivros[i];
-					
-				}
+					cout <<*recebelivros[i];	
+				
 				system("pause");
 			} break;
 
@@ -77,7 +78,10 @@ int main(int argc, char const *argv[])
 				cin>> formato; // Capta formato
 				
 				vector<Eletronico*>recebelivros = livrosEByFormato(formato,livros);//Chama função 
-				
+				if(recebelivros.size()==0){
+					cout<<"Nao existem livros com esse formato"<<endl;
+					system("pause");
+					break;}
 				cout << "O formato " << formato << " " << "esta presente nos seguintes livros:"  << endl; 
 				for (int i = 0; i < (int)recebelivros.size(); i++)
 				{
@@ -255,10 +259,10 @@ char menu()
 	cout << "f) Filtrar Livros por Titulo" << endl;
 	cout << "g) Exibir todos os Keywords" << endl;
 	cout << "h) Filtrar Livros por quantidade de Capitulos" << endl;
-	cout << "i) kkkkkk n entendi esse item" << endl;
+	cout << "i) Retorna um interador para cada tipo de livro" << endl;
 	cout << "j) Exibir todos os tipos de Livros" << endl;
 	cout << "k) Exibir a quantidade de Livros que contem uma keyword" << endl;
-	cout << "l) tbm n entendi esse item" << endl;
+	cout << "l) Realiza mapeamento de livros" << endl;
 	cout << "0) SAIR" << endl;
 
 	char op;
