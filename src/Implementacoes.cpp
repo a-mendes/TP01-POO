@@ -191,26 +191,26 @@ void mostrarOuSalvarColecaoLivro(vector<Livro*> &livros, int arquivoConsole){
 			Impresso *livroImpresso = dynamic_cast<Impresso*>(livros[i]);
 
 			if(arquivoConsole == 1)
-				cout << *livroImpresso << "\n";
+				cout << *livroImpresso;
 			
 			else if(arquivoConsole == 2)
-				arquivo << *livroImpresso << "\n";
+				arquivo << *livroImpresso;
 		}
 		else if(typeid(*livros[i]).name() == typeid(Eletronico).name()){
 			Eletronico *livroEletronico = dynamic_cast<Eletronico*>(livros[i]);
 			if(arquivoConsole == 1)
-				cout << *livroEletronico << "\n";
+				cout << *livroEletronico;
 			
 			else if(arquivoConsole == 2)
-				arquivo << *livroEletronico << "\n";
+				arquivo << *livroEletronico;
 		}
 		else if(typeid(*livros[i]).name() == typeid(AudioBook).name()){
 			AudioBook *livroAudioBook = dynamic_cast<AudioBook*>(livros[i]);
 			if(arquivoConsole == 1)
-				cout << *livroAudioBook << "\n";
+				cout << *livroAudioBook;
 			
 			else if(arquivoConsole == 2)
-				arquivo << *livroAudioBook << "\n";
+				arquivo << *livroAudioBook;
 		}
 	}
 }

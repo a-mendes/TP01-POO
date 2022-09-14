@@ -228,7 +228,7 @@ int main(int argc, char const *argv[])
 				mapaLivro = mapeamentoColecaoLivro(livros);		
 
 				for (auto &elm: mapaLivro)
-					cout << elm.second << "\n";
+					cout << elm.second;
 				system("pause");
 			} break;
 
