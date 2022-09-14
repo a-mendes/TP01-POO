@@ -1,14 +1,11 @@
 #include "headers/Utilitarios.h"
 
-//Verificar escopo adequado para essa função
 void lerBaseDeDados(vector<Livro*> &livros)
 {
-	//cout << "Lendo Base de Dados..." << endl;
 	for (int i = 0; i < QTD_LIVROS; ++i)
 	{
 		string nomeArquivo = "data/" + to_string(i+1) + ".txt";
 		ifstream arquivo(nomeArquivo);
-		//cout << "\tArquivo: " << nomeArquivo << endl;
 
 		/** 
 		 * Faz verificação de tipo de livro e cria instancia adequada
@@ -54,7 +51,6 @@ void lerBaseDeDados(vector<Livro*> &livros)
 	}
 }
 
-//Verificar escopo adequado para essa função
 void lerLivro(ifstream &arquivo, Livro *livro)
 {
 	/**
@@ -106,7 +102,6 @@ void lerLivro(ifstream &arquivo, Livro *livro)
 	livro->setCapitulos(capitulos);
 }
 
-//Verificar escopo adequado para essa função
 void lerAudioBook(ifstream &arquivo, AudioBook *audioBook)
 {
 	lerLivro(arquivo, audioBook);
@@ -126,7 +121,6 @@ void lerAudioBook(ifstream &arquivo, AudioBook *audioBook)
 	audioBook->setFormatoArquivo(formato);
 }
 
-//Verificar escopo adequado para essa função
 void lerEletronico(ifstream &arquivo, Eletronico *eletronico)
 {
 	lerLivro(arquivo, eletronico);
@@ -146,7 +140,6 @@ void lerEletronico(ifstream &arquivo, Eletronico *eletronico)
 	eletronico->setFormatoArquivo(formato);
 }
 
-//Verificar escopo adequado para essa função
 void lerImpresso(ifstream &arquivo, Impresso *impresso)
 {
 	lerLivro(arquivo, impresso);

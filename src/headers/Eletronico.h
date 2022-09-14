@@ -5,7 +5,6 @@
 #include <vector>
 #include "Livro.h"
 
-//Verificar boa prática
 using namespace std;
 
 class Eletronico : public Livro {

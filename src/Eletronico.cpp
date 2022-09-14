@@ -19,9 +19,9 @@ void Eletronico::setFormatoArquivo(string formatoArquivo){
 void Eletronico:: saida(ostream& os)const{
 	
     Livro::saida(os);
-//Imprime especificassões 
+    //Imprime especificassões 
 	os << formatoArquivo<<"\n";
-    }
+}
 
 
 

@@ -5,7 +5,6 @@
 #include <vector>
 #include "Livro.h"
 
-//Verificar boa prática
 using namespace std;
 
 class AudioBook : public Livro {
@@ -21,6 +20,7 @@ class AudioBook : public Livro {
 		string getFormatoArquivo();
 		void setFormatoArquivo(string formatoArquivo);	
 		void saida(ostream& os)const;
+		
 		friend ostream& operator<<(ostream&, const AudioBook&);
 };
 

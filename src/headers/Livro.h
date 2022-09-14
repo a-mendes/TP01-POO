@@ -4,7 +4,6 @@
 #include <string>
 #include <vector>
 
-//Verificar boa prática
 using namespace std;
 
 /**
@@ -22,7 +21,6 @@ class Livro
 
 	public:
 		Livro();
-		//Confirmar questão de classe abstrata e função virtual pura
 		virtual ~Livro();
 
 		vector<string> getEscritores();
@@ -46,7 +44,6 @@ class Livro
 		void saida(ostream& os) const;
 
 		friend ostream& operator<<(ostream&, const Livro&);
-		
 };
 
 #endif 
