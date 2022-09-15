@@ -10,10 +10,6 @@
 
 char menu();
 
-//g++ -o ColecaoLivros.exe src/*.cpp -Wall
-//https://stackoverflow.com/questions/3660901/a-warning-comparison-between-signed-and-unsigned-integer-expressions
-
-
 int main(int argc, char const *argv[])
 {                                        
 	cout << "  _____ ____   ___  _           ____   ___   ___  " << endl;
@@ -44,7 +40,7 @@ int main(int argc, char const *argv[])
 		{
 			case 'a': case 'A': //Imprime todos os livros 
 			{
-				for (int i = 0; i < (int)livros.size(); ++i)
+				for (unsigned long int i = 0; i < livros.size(); ++i)
 				{
 					cout << *livros[i];
 					
@@ -60,12 +56,12 @@ int main(int argc, char const *argv[])
 				cin>> idioma; //Capta o idioma requerido 
 
 				vector<Livro*>recebelivros = livrosByID(idioma,livros); // Chama a função
-				if(recebelivros.size()==0){
+				if(recebelivros.size() == 0){
 					cout<<"Nao existem livros com esse idioma"<<endl;
 					system("pause");
 					break;}
 				cout << "O idoma " << idioma << " " << "esta presente nos seguintes livros:"  << endl; 
-				for (int i = 0; i < (int)recebelivros.size(); i++)
+				for (unsigned long int i = 0; i < recebelivros.size(); i++)
 					cout <<*recebelivros[i];	
 				
 				system("pause");
@@ -78,12 +74,12 @@ int main(int argc, char const *argv[])
 				cin>> formato; // Capta formato
 				
 				vector<Eletronico*>recebelivros = livrosEByFormato(formato,livros);//Chama função 
-				if(recebelivros.size()==0){
+				if(recebelivros.size() == 0){
 					cout<<"Nao existem livros com esse formato"<<endl;
 					system("pause");
 					break;}
 				cout << "O formato " << formato << " " << "esta presente nos seguintes livros:"  << endl; 
-				for (int i = 0; i < (int)recebelivros.size(); i++)
+				for (unsigned long int i = 0; i < recebelivros.size(); i++)
 				{
 					cout <<*recebelivros[i];
 					
@@ -95,19 +91,19 @@ int main(int argc, char const *argv[])
 			{
 				//Melhorar UI
 				cout << "Informe a quantidade de Livros: ";
-				int qtdLivros;
+				unsigned long int qtdLivros;
 				cin >> qtdLivros;
 
 				vector<Impresso*> livrosEmLivrarias = qtdLivrosEmLivrarias(livros, qtdLivros);
 
-				if ((int)livrosEmLivrarias.size() == 0)
+				if (livrosEmLivrarias.size() == 0)
 				{
 					cout << "Nenhum livro foi encontrado" << endl;
 					system("pause");
 					break;
 				}
 
-				for (int i = 0; i < (int)livrosEmLivrarias.size(); ++i)
+				for (unsigned long int i = 0; i < livrosEmLivrarias.size(); ++i)
 				{
 					cout << *livrosEmLivrarias[i] << "\n";
 				}
@@ -144,14 +140,14 @@ int main(int argc, char const *argv[])
 
 				vector<Livro*> livrosTitulo = livrosByTitulo(livros, titulo);
 
-				if ((int)livrosTitulo.size() == 0)
+				if (livrosTitulo.size() == 0)
 				{
 					cout << "Nenhum livro foi encontrado" << endl;
 					system("pause");
 					break;
 				}
 
-				for (int i = 0; i < (int)livrosTitulo.size(); ++i)
+				for (unsigned long int i = 0; i < livrosTitulo.size(); ++i)
 				{
 					cout<<*livrosTitulo[i];
 				}
@@ -161,7 +157,7 @@ int main(int argc, char const *argv[])
 			case 'g': case 'G':
 			{
                 vector<string> keywords = printKeywords(livros);
-				for(int i = 0; i < (int)keywords.size();i++){
+				for(unsigned long int i = 0; i < keywords.size();i++){
 					cout << keywords[i] << "; ";
 				}
 				cout << endl;
@@ -170,10 +166,10 @@ int main(int argc, char const *argv[])
 
 			case 'h': case 'H':
 			{
-				int capitulos;
+				unsigned long int capitulos;
 				cout << "Numero minimo de capitulos:"; cin >> capitulos;
 				vector<string> listaDeLivros = filtraPorCapitulo(livros, capitulos);
-				for(int i = 0; i < listaDeLivros.size(); i++){
+				for(unsigned long int i = 0; i < listaDeLivros.size(); i++){
 					cout << listaDeLivros[i] << "; ";
 				}
 				cout << endl;
@@ -187,7 +183,7 @@ int main(int argc, char const *argv[])
 				getline(cin >> ws, titulo);
 				vector<vector<Livro*>::iterator> itrs = retornaIterador(titulo, livros);
 				//percorre o vector de iteradores e faz um downcasting de cada iterador para cada sub-classe
-				for(int i = 0; i < itrs.size(); i++){
+				for(unsigned long int i = 0; i < itrs.size(); i++){
 					// downcasting de iterador para livro impresso
 					Impresso *livroImpresso = dynamic_cast<Impresso*>(*itrs[i]);
 					if(livroImpresso != nullptr){// se o downcasting tiver sucesso. imprime o livro impresso
