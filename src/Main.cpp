@@ -46,7 +46,6 @@ int main(int argc, char const *argv[])
 					
 				}
 
-				system("pause");
 			} break;
 
 			case 'b': case 'B': //Imprime livros de determinado idioma 
@@ -58,13 +57,11 @@ int main(int argc, char const *argv[])
 				vector<Livro*>recebelivros = livrosByID(idioma,livros); // Chama a função
 				if(recebelivros.size() == 0){
 					cout<<"Nao existem livros com esse idioma"<<endl;
-					system("pause");
 					break;}
 				cout << "O idoma " << idioma << " " << "esta presente nos seguintes livros:"  << endl; 
 				for (unsigned long int i = 0; i < recebelivros.size(); i++)
 					cout <<*recebelivros[i];	
 				
-				system("pause");
 			} break;
 
 			case 'c': case 'C'://Imprime Livros eletronicos de determinado formato em ordem Crescente com base no ano de Publicação 
@@ -76,7 +73,6 @@ int main(int argc, char const *argv[])
 				vector<Eletronico*>recebelivros = livrosEByFormato(formato,livros);//Chama função 
 				if(recebelivros.size() == 0){
 					cout<<"Nao existem livros com esse formato"<<endl;
-					system("pause");
 					break;}
 				cout << "O formato " << formato << " " << "esta presente nos seguintes livros:"  << endl; 
 				for (unsigned long int i = 0; i < recebelivros.size(); i++)
@@ -84,7 +80,6 @@ int main(int argc, char const *argv[])
 					cout <<*recebelivros[i];
 					
 				}
-				system("pause");
 			} break;
 
 			case 'd': case 'D': 
@@ -99,15 +94,13 @@ int main(int argc, char const *argv[])
 				if (livrosEmLivrarias.size() == 0)
 				{
 					cout << "Nenhum livro foi encontrado" << endl;
-					system("pause");
 					break;
 				}
 
 				for (unsigned long int i = 0; i < livrosEmLivrarias.size(); ++i)
 				{
-					cout << *livrosEmLivrarias[i] << "\n";
+					cout << *livrosEmLivrarias[i];
 				}
-				system("pause");
 			} break;
 
 			case 'e': case 'E':
@@ -124,7 +117,6 @@ int main(int argc, char const *argv[])
 				string nao = (hasAudioBook(livros, escritor)) ? (" ") : (" nao ");
 
 				cout << "O escritor '" << escritor << "'" << nao << "possui AudioBooks" << endl; 
-				system("pause");
 			} break;
 
 			case 'f': case 'F':
@@ -143,7 +135,6 @@ int main(int argc, char const *argv[])
 				if (livrosTitulo.size() == 0)
 				{
 					cout << "Nenhum livro foi encontrado" << endl;
-					system("pause");
 					break;
 				}
 
@@ -151,7 +142,6 @@ int main(int argc, char const *argv[])
 				{
 					cout<<*livrosTitulo[i];
 				}
-				system("pause");
 			} break;
 
 			case 'g': case 'G':
@@ -161,19 +151,17 @@ int main(int argc, char const *argv[])
 					cout << keywords[i] << "; ";
 				}
 				cout << endl;
-				system("pause");
 			} break;
 
 			case 'h': case 'H':
 			{
 				unsigned long int capitulos;
 				cout << "Numero minimo de capitulos:"; cin >> capitulos;
-				vector<string> listaDeLivros = filtraPorCapitulo(livros, capitulos);
+				vector<Livro*> listaDeLivros = filtraPorCapitulo(livros, capitulos);
 				for(unsigned long int i = 0; i < listaDeLivros.size(); i++){
-					cout << listaDeLivros[i] << "; ";
+					cout << *listaDeLivros[i];
 				}
 				cout << endl;
-				system("pause");
 			} break;
 
 			case 'i': case 'I':
@@ -200,7 +188,6 @@ int main(int argc, char const *argv[])
 						cout << *livroAudioBook << endl; 
 					}
 				}
-				system("pause");
 			} break;
 
 			case 'j': case 'J':
@@ -209,7 +196,6 @@ int main(int argc, char const *argv[])
 				cout << "1: Mostrar Dados Console. 2: Escrever no Arquivo: ";
 				cin >> mostrarSalvar;
 				mostrarOuSalvarColecaoLivro(livros, mostrarSalvar);
-				system("pause");
 			} break;
 
 			case 'k': case 'K':
@@ -219,7 +205,6 @@ int main(int argc, char const *argv[])
 
 				cout << "Keyword: "; getline(cin, keyword);
 				cout << "Quantidade de livros com Keyword " << keyword << ": " << quantidadeKeywordColecaoLivro(livros, keyword) << endl;
-				system("pause");
 			} break;
 
 			case 'l': case 'L':
@@ -246,7 +231,6 @@ int main(int argc, char const *argv[])
 				for (MMAPIterator it = result.first; it != result.second; it++)
 					cout << it->second;
 
-				system("pause");
 			} break;
 
 			case '0': break;

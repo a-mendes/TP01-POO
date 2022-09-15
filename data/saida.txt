@@ -1,16 +1,16 @@
-Harry Potter e a Pedra Filosof|                 J. K. Rowling|Ingles    |017|003|15.50
-O Alquimista                  |                  Paulo Coelho|Portugues |016|003|10.80
-O Hobbit                      |     John Ronald Reuel Tolkien|Ingles    |019|005|PDF
-Game of Thrones               |           George R. R. Martin|Ingles    |072|004|saraiva
-Martine                       |              Gilbert Delahaye|Frances   |001|002|leitura
-O Pequeno Principe            |      Antoine de Saint-Exupery|Frances   |022|004|leitura
-Dom Quixote                   |           Miguel de Cervantes|Espanhol  |052|006|PDF
-Harry Potter e a Pedra Filosof|                 J. K. Rowling|Ingles    |017|003|EPUB
-O Senhor dos Aneis            |     John Ronald Reuel Tolkien|Ingles    |012|004|amazon
-O Hobbit                      |     John Ronald Reuel Tolkien|Ingles    |019|005|21.90
-Harry Potter e a Pedra Filosof|                 J. K. Rowling|Ingles    |017|003|leitura
-Game of Thrones               |           George R. R. Martin|Ingles    |072|004|33.88
-Game of Thrones               |           George R. R. Martin|Ingles    |072|004|EPUB
-O Leao, a Feiticeira e o Guard|           Clive Staples Lewis|Ingles    |017|004|wav
-O Leao, a Feiticeira e o Guard|           Clive Staples Lewis|Ingles    |017|004|saraiva
-O Senhor dos Aneis            |     John Ronald Reuel Tolkien|Ingles    |012|004|8.70
+Harry Potter e a Pedra Filosof|                 J. K. Rowling|Ingles    |017|03|15.50
+O Alquimista                  |                  Paulo Coelho|Portugues |016|03|10.80
+O Hobbit                      |     John Ronald Reuel Tolkien|Ingles    |019|05|PDF
+Game of Thrones               |           George R. R. Martin|Ingles    |072|04|saraiva
+Martine                       |              Gilbert Delahaye|Frances   |001|02|leitura
+O Pequeno Principe            |      Antoine de Saint-Exupery|Frances   |022|04|leitura
+Dom Quixote                   |           Miguel de Cervantes|Espanhol  |052|06|PDF
+Harry Potter e a Pedra Filosof|                 J. K. Rowling|Ingles    |017|03|EPUB
+O Senhor dos Aneis            |     John Ronald Reuel Tolkien|Ingles    |012|04|amazon
+O Hobbit                      |     John Ronald Reuel Tolkien|Ingles    |019|05|21.90
+Harry Potter e a Pedra Filosof|                 J. K. Rowling|Ingles    |017|03|leitura
+Game of Thrones               |           George R. R. Martin|Ingles    |072|04|33.88
+Game of Thrones               |           George R. R. Martin|Ingles    |072|04|EPUB
+O Leao, a Feiticeira e o Guard|           Clive Staples Lewis|Ingles    |017|04|wav
+O Leao, a Feiticeira e o Guard|           Clive Staples Lewis|Ingles    |017|04|saraiva
+O Senhor dos Aneis            |     John Ronald Reuel Tolkien|Ingles    |012|04|8.70

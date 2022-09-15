@@ -144,16 +144,17 @@ vector <string> printKeywords(vector<Livro*> &livros){
 }
 
 //------------------------ H
-vector <string> filtraPorCapitulo(vector<Livro*> &livros, unsigned long int capitulos){
-	vector<string> livrosFiltrados;// vetor de titulos de livros filtrados por quantidade de capitulos
-	vector<Livro*> aux = livros;// vetor auxiliar que sera ordenado
-	sort(aux.begin(), aux.end(), comparaEscritores);// ordena o vetor auxiliar em ordem do primeiro escritor
+vector <Livro*> filtraPorCapitulo(vector<Livro*> &livros, unsigned long int capitulos){
+	vector<Livro*> livrosFiltrados;// vetor de titulos de livros filtrados por quantidade de capitulos
 	for(int i = 0; i < QTD_LIVROS; i++){
 		// a cada livro do vetor de livros, verifica se a quantidade de capitulos é a quantidade buscada
-		if(aux[i]->getCapitulos().size() <= capitulos){
-			livrosFiltrados.push_back(aux[i]->getTitulo());// se for, add o livro ao vetor de livros filtrados por capitulo
+		if(livros[i]->getCapitulos().size() <= capitulos){
+			livrosFiltrados.push_back(livros[i]);// se for, add o livro ao vetor de livros filtrados por capitulo
 		}
 	}
+	
+	sort(livrosFiltrados.begin(), livrosFiltrados.end(), comparaEscritores);// ordena o vetor auxiliar em ordem do primeiro escritor
+
 	return livrosFiltrados;//retorna o vetor de livros filtrados, ja ordenado em relacao aos escritores
 }
 bool comparaEscritores(Livro* a, Livro* b){
